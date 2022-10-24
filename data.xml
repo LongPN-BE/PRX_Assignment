@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cities>
+    <city>
+        <id>C001</id>
+        <name>HoChiMinh</name>
+        <description>Dep</description>
+        <touristdestinations>
+            <touristdestination>
+                <name></name>
+                <description></description>
+                <img></img>
+            </touristdestination>
+        </touristdestinations>
+    </city>
+    <city>
+        <cityID>C002</cityID>
+        <cityName>HaNoi</cityName>
+        <cityDescription>Dep</cityDescription>
+        <touristdestinations>
+            <touristdestination>
+                <name></name>
+                <description></description>
+                <img></img>
+            </touristdestination>
+        </touristdestinations>
+    </city>
+</cities>
+
+<tours>
+    <tourtypes>
+        <tourtype>
+            <name>Single</name>
+            <description>Happy</description>
+            <tour>         
+                <id>T001</id>
+                <name>Ho Chi Minh - Ha Noi</name>
+                <startDate>10/10/2022</startDate>
+                <endDate>20/10/2022</endDate>
+                <days>10days</days>
+                <content>Yes</content>
+                <img>image</img>
+                <tourdeatils>
+                    <tourdeatil>
+                        <id>TDT001</id>
+                        <cityid>C001</cityid>
+                    </tourdeatil>
+                    <tourdeatil>
+                        <id>TDT002</id>
+                        <cityid>C002</cityid>
+                    </tourdeatil>
+                </tourdeatils>
+            </tour>
+        </tourtype>
+        <tourtype>
+            <name>Family</name>
+            <description>Bad</description>
+            <tour>         
+                <id>T002</id>
+                <name>Ho Chi Minh - Ha Noi</name>
+                <startDate>01/10/2022</startDate>
+                <endDate>05/10/2022</endDate>
+                <days>4days</days>
+                <content>No</content>
+                <img>image</img>            
+                <tourdeatils>
+                    <tourdeatil>
+                        <id>TDT001</id>
+                        <cityid>C001</cityid>
+                    </tourdeatil>
+                    <tourdeatil>
+                        <id>TDT002</id>
+                        <cityid>C002</cityid>
+                    </tourdeatil>
+                </tourdeatils>
+            </tour>
+        </tourtype>
+    </tourtypes>
+</tours>
