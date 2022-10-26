@@ -1,79 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<cities>
-    <city>
-        <id>C001</id>
-        <name>HoChiMinh</name>
-        <description>Dep</description>
-        <touristdestinations>
-            <touristdestination>
-                <name></name>
-                <description></description>
-                <img></img>
-            </touristdestination>
-        </touristdestinations>
-    </city>
-    <city>
-        <cityID>C002</cityID>
-        <cityName>HaNoi</cityName>
-        <cityDescription>Dep</cityDescription>
-        <touristdestinations>
-            <touristdestination>
-                <name></name>
-                <description></description>
-                <img></img>
-            </touristdestination>
-        </touristdestinations>
-    </city>
-</cities>
-
-<tours>
+<root>
+    <cities>
+        <city>
+            <id>1</id>
+            <name>Ho Chi Minh</name>
+            <description>Dep</description>
+            <touristdestinations>
+                <touristdestination>
+                    <id>1</id>
+                    <name>Pho Di Bo Nguyen Hue</name>
+                    <description>Di Co  Gi Vui</description>
+                    <img>url01</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>2</id>
+                    <name>Pho Nguyen Hoa</name>
+                    <description>Di Chua Nguoi Hoa</description>
+                    <img>url02</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>3</id>
+                    <name>HoConRua</name>
+                    <description>Ngoi Chill Cung Ban</description>
+                    <img>url03</img>
+                </touristdestination>
+            </touristdestinations>
+        </city>
+        <city>
+            <id>2</id>
+            <name>Ha Noi</name>
+            <description>Thu Do</description>
+            <touristdestinations>
+                <touristdestination>
+                    <id>1</id>
+                    <name>Ho Ruom</name>
+                    <description>Ngam Gai</description>
+                    <img>url04</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>2</id>
+                    <name>Pho Di Bo Ha Noi</name>
+                    <description>Dancewithpeople</description>
+                    <img>url05</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>3</id>
+                    <name>Tran Duy Hung</name>
+                    <description>Pho Di</description>
+                    <img>url06</img>
+                </touristdestination>
+            </touristdestinations>
+        </city>
+        <city>
+            <id>3</id>
+            <name>Da Nang</name>
+            <description>MienTrung</description>
+            <touristdestinations>
+                <touristdestination>
+                    <id>1</id>
+                    <name>Cau Rong</name>
+                    <description>Phun Lua Phun Nuoc</description>
+                    <img>url07</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>2</id>
+                    <name>FPT Da Nang</name>
+                    <description>truongdaihojc</description>
+                    <img>url08</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>3</id>
+                    <name>Co Do Hue</name>
+                    <description>Hoi An</description>
+                    <img>url9</img>
+                </touristdestination>
+            </touristdestinations>
+        </city>
+    </cities>
     <tourtypes>
         <tourtype>
+            <id>1</id>
             <name>Single</name>
             <description>Happy</description>
-            <tour>         
-                <id>T001</id>
-                <name>Ho Chi Minh - Ha Noi</name>
-                <startDate>10/10/2022</startDate>
-                <endDate>20/10/2022</endDate>
-                <days>10days</days>
-                <content>Yes</content>
-                <img>image</img>
-                <tourdeatils>
-                    <tourdeatil>
-                        <id>TDT001</id>
-                        <cityid>C001</cityid>
-                    </tourdeatil>
-                    <tourdeatil>
-                        <id>TDT002</id>
-                        <cityid>C002</cityid>
-                    </tourdeatil>
-                </tourdeatils>
-            </tour>
+            <tours>
+                <tour>
+                    <id>1</id>
+                    <name>Ho Chi Minh - Ha Noi</name>
+                    <startDate>10/10/2022</startDate>
+                    <endDate>20/10/2022</endDate>
+                    <days>10days</days>
+                    <content>Yes</content>
+                    <img>image</img>
+                    <tourdeatils>
+                        <tourdeatil>
+                            <id>1</id>
+                            <cityid>1</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>2</id>
+                            <cityid>2</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>4</id>
+                            <cityid>1</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>5</id>
+                            <cityid>2</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>6</id>
+                            <cityid>1</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>007</id>
+                            <cityid>002</cityid>
+                        </tourdeatil>
+                    </tourdeatils>
+                </tour>
+            </tours>
         </tourtype>
         <tourtype>
+            <id>002</id>
             <name>Family</name>
             <description>Bad</description>
-            <tour>         
-                <id>T002</id>
-                <name>Ho Chi Minh - Ha Noi</name>
-                <startDate>01/10/2022</startDate>
-                <endDate>05/10/2022</endDate>
-                <days>4days</days>
-                <content>No</content>
-                <img>image</img>            
-                <tourdeatils>
-                    <tourdeatil>
-                        <id>TDT001</id>
-                        <cityid>C001</cityid>
-                    </tourdeatil>
-                    <tourdeatil>
-                        <id>TDT002</id>
-                        <cityid>C002</cityid>
-                    </tourdeatil>
-                </tourdeatils>
-            </tour>
+            <tours>
+                <tour>
+                    <id>002</id>
+                    <name>Ho Chi Minh - Ha Noi</name>
+                    <startDate>01/10/2022</startDate>
+                    <endDate>05/10/2022</endDate>
+                    <days>4days</days>
+                    <content>No</content>
+                    <img>image</img>
+                    <tourdeatils>
+                        <tourdeatil>
+                            <id>008</id>
+                            <cityid>001</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>009</id>
+                            <cityid>2</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>010</id>
+                            <cityid>1</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>011</id>
+                            <cityid>002</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>012</id>
+                            <cityid>001</cityid>
+                        </tourdeatil>
+                        <tourdeatil>
+                            <id>013</id>
+                            <cityid>002</cityid>
+                        </tourdeatil>
+                    </tourdeatils>
+                </tour>
+            </tours>
         </tourtype>
     </tourtypes>
-</tours>
+</root>
