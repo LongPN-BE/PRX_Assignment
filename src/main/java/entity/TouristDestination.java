@@ -5,10 +5,6 @@
  */
 package entity;
 
-import java.io.Serializable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +12,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement(name = "touristdestination")
-@XmlAccessorType(XmlAccessType.FIELD)
-class TouristDestination implements Serializable {
+public class TouristDestination {
 
-    private static final long serialVersionUID = 1L;
-
-    private int id;
+    private String id;
     private String name;
     private String description;
     private String img;

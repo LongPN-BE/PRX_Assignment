@@ -5,35 +5,23 @@
  */
 package utils;
 
-import entity.City;
-import entity.Root;
-import java.io.File;
-import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import models.RootModel;
+import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author Pc
  */
 public class DBUtil {
-    private static final String resource = "/data.xml";
-    public Root unMarshaller() throws JAXBException {
-        File f = new File(resource);
-        JAXBContext jAXBContext;
-        jAXBContext = JAXBContext.newInstance(Root.class);
-        Unmarshaller u = jAXBContext.createUnmarshaller();
-        Root root = (Root) u.unmarshal(f);
-        return root;
-    }
 
-    public Root marshaller(Root root) throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(Root.class);
-        javax.xml.bind.Marshaller m = jc.createMarshaller();
-        m.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        m.marshal(root, new File(resource));
-        return root;
+    public Document connect() throws SAXException, ParserConfigurationException, IOException {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document doc = db.parse("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml");
+        return doc;
     }
 }

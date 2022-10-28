@@ -5,35 +5,66 @@
  */
 package servlet;
 
+import models.*;
+import entity.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
 
-@WebServlet(name = "DispatcherServlet", urlPatterns = "/DispatcherServlet")
-public class DispatcherServlet extends HttpServlet {
+import org.xml.sax.SAXException;
 
-    private static final String HOMEPAGE = "home.jsp";
+/**
+ *
+ * @author Pc
+ */
+@WebServlet(name = "SearchServlet", urlPatterns = "/SearchServlet")
+public class SearchServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String button = request.getParameter("txtValueSearch");
         PrintWriter out = response.getWriter();
-        String url = HOMEPAGE;
-        String button = request.getParameter("button");
-
         try {
-            if (button.isEmpty() || button.equals("")) {
-                url = "SearchCityServlet";
-            }
-        } catch (Exception ex) {
+            /* TODO output your page here. You may use following sample code. */
+            CityModel cityModel = new CityModel();
+            cityModel.readListCities();
+            List<City> cities = cityModel.getCities();
+            HttpSession session = request.getSession();
+            session.setAttribute("CITIES", cities);
 
+            TourModel tourModel = new TourModel();
+            tourModel.readTours();
+            List<Tour> tours = tourModel.getTours();
+            session.setAttribute("TOURS", tours);
+
+            TourTypeModel tourtypeModel = new TourTypeModel();
+            tourtypeModel.readTourTypes();
+            List<TourType> tourTypes = tourtypeModel.getListTourType();
+            session.setAttribute("TOURTYPES", tourTypes);
+
+            TouristDestinationModel touristdestinationModel = new TouristDestinationModel();
+            touristdestinationModel.readListTouristDestinations();
+            List<TouristDestination> touristDestinations = touristdestinationModel.getTouristDestinations();
+            session.setAttribute("TOURISTDESTINATIONS", touristDestinations);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            request.getRequestDispatcher("SearchServlet").forward(request, response);
+            response.sendRedirect("home.jsp");
             out.close();
         }
     }

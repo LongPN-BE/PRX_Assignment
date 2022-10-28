@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<class>
     <cities>
         <city>
             <id>1</id>
@@ -32,19 +33,19 @@
             <description>Thu Do</description>
             <touristdestinations>
                 <touristdestination>
-                    <id>1</id>
+                    <id>4</id>
                     <name>Ho Ruom</name>
                     <description>Ngam Gai</description>
                     <img>url04</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>2</id>
+                    <id>5</id>
                     <name>Pho Di Bo Ha Noi</name>
                     <description>Dancewithpeople</description>
                     <img>url05</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>3</id>
+                    <id>6</id>
                     <name>Tran Duy Hung</name>
                     <description>Pho Di</description>
                     <img>url06</img>
@@ -57,19 +58,19 @@
             <description>MienTrung</description>
             <touristdestinations>
                 <touristdestination>
-                    <id>1</id>
+                    <id>7</id>
                     <name>Cau Rong</name>
                     <description>Phun Lua Phun Nuoc</description>
                     <img>url07</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>2</id>
+                    <id>8</id>
                     <name>FPT Da Nang</name>
                     <description>truongdaihojc</description>
                     <img>url08</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>3</id>
+                    <id>9</id>
                     <name>Co Do Hue</name>
                     <description>Hoi An</description>
                     <img>url9</img>
@@ -93,24 +94,24 @@
                     <img>image</img>
                     <tourdeatils>
                         <tourdeatil>
-                            <id>1</id>
-                            <cityid>1</cityid>
+                            <id>001</id>
+                            <cityid>001</cityid>
                         </tourdeatil>
                         <tourdeatil>
-                            <id>2</id>
-                            <cityid>2</cityid>
+                            <id>002</id>
+                            <cityid>002</cityid>
                         </tourdeatil>
                         <tourdeatil>
-                            <id>4</id>
-                            <cityid>1</cityid>
+                            <id>004</id>
+                            <cityid>001</cityid>
                         </tourdeatil>
                         <tourdeatil>
-                            <id>5</id>
-                            <cityid>2</cityid>
+                            <id>005</id>
+                            <cityid>002</cityid>
                         </tourdeatil>
                         <tourdeatil>
-                            <id>6</id>
-                            <cityid>1</cityid>
+                            <id>006</id>
+                            <cityid>001</cityid>
                         </tourdeatil>
                         <tourdeatil>
                             <id>007</id>
@@ -126,7 +127,7 @@
             <description>Bad</description>
             <tours>
                 <tour>
-                    <id>002</id>
+                    <id>2</id>
                     <name>Ho Chi Minh - Ha Noi</name>
                     <startDate>01/10/2022</startDate>
                     <endDate>05/10/2022</endDate>
@@ -163,4 +164,4 @@
             </tours>
         </tourtype>
     </tourtypes>
-</root>
+</class>

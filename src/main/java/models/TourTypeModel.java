@@ -5,7 +5,7 @@
  */
 package models;
 
-import entity.City;
+import entity.TourType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,36 +21,36 @@ import utils.DBUtil;
  *
  * @author Pc
  */
-public class CityModel {
+public class TourTypeModel {
 
-    private List<City> cities = new ArrayList<>();
+    private List<TourType> listTourType = new ArrayList<>();
 
-    public List<City> getCities() {
-        return cities;
+    public List<TourType> getListTourType() {
+        return listTourType;
     }
 
-    public void readListCities() throws ParserConfigurationException, SAXException, IOException {
+    public void readTourTypes() throws ParserConfigurationException, SAXException, IOException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
         Document doc = db.connect();
         doc.getDocumentElement().normalize();
         // in phần tử gốc ra màn hình
-        NodeList nodeCities = doc.getElementsByTagName("city");
+        NodeList nodeTourTypes = doc.getElementsByTagName("tourtype");
         // duyệt các phần tử
-        for (int i = 0; i < nodeCities.getLength(); i++) {
-            City city = new City();
-            Node nNode = nodeCities.item(i);
+        for (int i = 0; i < nodeTourTypes.getLength(); i++) {
+            TourType tourtype = new TourType();
+            Node nNode = nodeTourTypes.item(i);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                city.setId(eElement.getElementsByTagName("id")
+                tourtype.setId(eElement.getElementsByTagName("id")
                         .item(0).getTextContent());
-                city.setName(eElement.getElementsByTagName("name")
+                tourtype.setName(eElement.getElementsByTagName("name")
                         .item(0).getTextContent());
-                city.setDescription(eElement.getElementsByTagName("description")
+                tourtype.setDescription(eElement.getElementsByTagName("description")
                         .item(0).getTextContent());
+
             }
-            this.cities.add(city);
+            this.listTourType.add(tourtype);
         }
     }
-
 }

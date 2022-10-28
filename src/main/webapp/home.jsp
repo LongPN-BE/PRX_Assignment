@@ -12,7 +12,9 @@
     </head>
     <body>
         <%@include file="cities.jsp" %>
+        <%@include file="touristdestination.jsp" %>
         <%@include file="tours.jsp" %>
+        <%@include file="tourtypes.jsp" %>
     </body>
     <footer>
         <%@include file="footer.jsp" %>
