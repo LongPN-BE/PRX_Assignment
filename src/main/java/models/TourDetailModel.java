@@ -17,6 +17,7 @@ import utils.DBUtil;
  * @author Pc
  */
 public class TourDetailModel {
+
     private List<TourDetail> listtourdetail = new ArrayList<>();
 
     public List<TourDetail> getListTourDetail() {
@@ -34,5 +35,20 @@ public class TourDetailModel {
                 }
             }
         }
+    }
+
+    public TourDetail searchTourDetailById(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+                    if(root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(id))
+                   return root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k);
+                }
+            }
+        }
+        return null;
     }
 }

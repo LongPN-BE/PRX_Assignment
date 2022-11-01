@@ -33,12 +33,12 @@ public class DBUtil {
         return root;
     }
 
-    public boolean marshaller() throws JAXBException {
+    public boolean marshaller(Root root) throws JAXBException {
         File f = new File("data.xml");
         JAXBContext jAXBContext;
         jAXBContext = JAXBContext.newInstance(Root.class);
         Unmarshaller u = jAXBContext.createUnmarshaller();
-        Root root = (Root) u.unmarshal(f);
+        root = (Root) u.unmarshal(f);
         return true;
     }
 }

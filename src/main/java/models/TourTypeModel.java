@@ -5,8 +5,7 @@
  */
 package models;
 
-import entity.Root;
-import entity.TourType;
+import entity.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +31,17 @@ public class TourTypeModel {
         for (int i = 0; i < root.getListTourType().size(); i++) {
             this.listTourType.add(root.getListTourType().get(i));
         }
+    }
+
+    public TourType searchTourType(String name) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if(root.getListTourType().get(i).getName().contains(name)){
+                return root.getListTourType().get(i);
+            }
+        }
+        return null;
     }
 }

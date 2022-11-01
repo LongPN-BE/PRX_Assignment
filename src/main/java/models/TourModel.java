@@ -41,7 +41,7 @@ public class TourModel {
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-                if(root.getListTourType().get(i).getListTour().get(j).getName().equals(name)){
+                if(root.getListTourType().get(i).getListTour().get(j).getName().contains(name)){
                   return root.getListTourType().get(i).getListTour().get(j);
                 }
             }

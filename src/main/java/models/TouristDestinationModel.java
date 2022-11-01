@@ -5,7 +5,6 @@
  */
 package models;
 
-
 import entity.*;
 import entity.TouristDestination;
 import java.io.IOException;
@@ -35,5 +34,19 @@ public class TouristDestinationModel {
                 this.listtourist.add(root.getListCity().get(i).getListTourist().get(j));
             }
         }
+    }
+
+    public TouristDestination searchTouristByName(String name) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                if (root.getListCity().get(i).getListTourist().get(j).getName().contains(name)) {
+                    return root.getListCity().get(i).getListTourist().get(j);
+                }
+            }
+        }
+        return null;
     }
 }

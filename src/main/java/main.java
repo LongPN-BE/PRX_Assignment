@@ -23,7 +23,7 @@ public class main {
         cityModel.readCity();
         List<City> cities = cityModel.getListCity();
         System.out.println(cities);
-        System.out.println("Search City: " + cityModel.searchCityByName("Ho Chi Minh"));
+        System.out.println("Search City: " + cityModel.searchCityByName("Da"));
         
         TourModel tourModel = new TourModel();
         tourModel.readTour();
