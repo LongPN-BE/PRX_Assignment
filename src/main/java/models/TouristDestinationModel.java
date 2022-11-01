@@ -5,17 +5,13 @@
  */
 package models;
 
-import entity.City;
+
+import entity.*;
 import entity.TouristDestination;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import javax.xml.bind.JAXBException;
 import utils.DBUtil;
 
 /**
@@ -23,36 +19,21 @@ import utils.DBUtil;
  * @author Pc
  */
 public class TouristDestinationModel {
-    private List<TouristDestination> touristdestinations = new ArrayList<>();
 
-    public List<TouristDestination> getTouristDestinations() {
-        return this.touristdestinations;
+    private List<TouristDestination> listtourist = new ArrayList<>();
+
+    public List<TouristDestination> getListTourist() {
+        return this.listtourist;
     }
 
-    public void readListTouristDestinations() throws ParserConfigurationException, SAXException, IOException {
+    public void readTourist() throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
-        Document doc = db.connect();
-        doc.getDocumentElement().normalize();
-        // in phần tử gốc ra màn hình
-        NodeList nodeTouristDestinations = doc.getElementsByTagName("touristdestination");
-        // duyệt các phần tử
-        for (int i = 0; i < nodeTouristDestinations.getLength(); i++) {
-            TouristDestination touristdestination = new TouristDestination();
-            Node nNode = nodeTouristDestinations.item(i);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                touristdestination.setId(eElement.getElementsByTagName("id")
-                        .item(0).getTextContent());
-                touristdestination.setName(eElement.getElementsByTagName("name")
-                        .item(0).getTextContent());
-                touristdestination.setDescription(eElement.getElementsByTagName("description")
-                        .item(0).getTextContent());
-                touristdestination.setImg(eElement.getElementsByTagName("img")
-                        .item(0).getTextContent());
-
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                this.listtourist.add(root.getListCity().get(i).getListTourist().get(j));
             }
-            this.touristdestinations.add(touristdestination);
         }
     }
 }

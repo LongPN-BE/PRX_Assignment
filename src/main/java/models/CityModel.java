@@ -5,16 +5,11 @@
  */
 package models;
 
-import entity.City;
+import entity.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import javax.xml.bind.JAXBException;
 import utils.DBUtil;
 
 /**
@@ -23,34 +18,31 @@ import utils.DBUtil;
  */
 public class CityModel {
 
-    private List<City> cities = new ArrayList<>();
+    private List<City> listCity = new ArrayList<>();
 
-    public List<City> getCities() {
-        return cities;
+    public List<City> getListCity() {
+        return this.listCity;
     }
 
-    public void readListCities() throws ParserConfigurationException, SAXException, IOException {
+    public void readCity() throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
-        Document doc = db.connect();
-        doc.getDocumentElement().normalize();
-        // in phần tử gốc ra màn hình
-        NodeList nodeCities = doc.getElementsByTagName("city");
-        // duyệt các phần tử
-        for (int i = 0; i < nodeCities.getLength(); i++) {
-            City city = new City();
-            Node nNode = nodeCities.item(i);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                city.setId(eElement.getElementsByTagName("id")
-                        .item(0).getTextContent());
-                city.setName(eElement.getElementsByTagName("name")
-                        .item(0).getTextContent());
-                city.setDescription(eElement.getElementsByTagName("description")
-                        .item(0).getTextContent());
-            }
-            this.cities.add(city);
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            this.listCity.add(root.getListCity().get(i));
         }
+    }
+
+    public City searchCityByName(String name) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            if(root.getListCity().get(i).getName().equals(name)){
+                return root.getListCity().get(i);
+            }
+        }
+        return null;
     }
 
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roles>
+	<role id="r01" name="editor" />
+	<role id="r02" name="mod" />
+	<role id="r03" name="supermod" />
+	<role id="r04" name="admin"/>
+</roles>

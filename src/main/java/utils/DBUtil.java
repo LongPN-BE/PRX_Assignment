@@ -5,12 +5,12 @@
  */
 package utils;
 
-import java.io.IOException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+import entity.Root;
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
@@ -18,10 +18,27 @@ import org.xml.sax.SAXException;
  */
 public class DBUtil {
 
-    public Document connect() throws SAXException, ParserConfigurationException, IOException {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml");
-        return doc;
+//    public Document connect() throws SAXException, ParserConfigurationException, IOException {
+//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//        DocumentBuilder db = dbf.newDocumentBuilder();
+//        Document doc = db.parse("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml");
+//        return doc;
+//    }
+    public Root unmarshaller() throws JAXBException {
+        File f = new File("data.xml");
+        JAXBContext jAXBContext;
+        jAXBContext = JAXBContext.newInstance(Root.class);
+        Unmarshaller u = jAXBContext.createUnmarshaller();
+        Root root = (Root) u.unmarshal(f);
+        return root;
+    }
+
+    public boolean marshaller() throws JAXBException {
+        File f = new File("data.xml");
+        JAXBContext jAXBContext;
+        jAXBContext = JAXBContext.newInstance(Root.class);
+        Unmarshaller u = jAXBContext.createUnmarshaller();
+        Root root = (Root) u.unmarshal(f);
+        return true;
     }
 }

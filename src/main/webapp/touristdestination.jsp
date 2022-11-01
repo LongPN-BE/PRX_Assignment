@@ -8,10 +8,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <h1>List Tourist Destination</h1>
-<c:set value="${sessionScope.TOURISTDESTINATIONS}" var="list"/> 
+<c:set value="${sessionScope.TOURIST}" var="list"/> 
 
 <c:if test="${not empty list}">
-
+New
     <table border="1">
         <thead>
             <tr>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userroles>
+	<userrole id="ur01" userid="u01" roleid="r02"/>
+	<userrole id="ur02" userid="u01" roleid="r03"/>
+	<userrole id="ur03" userid="u01" roleid="r04"/>
+	<userrole id="ur04" userid="u02" roleid="r01"/>
+	<userrole id="ur05" userid="u04" roleid="r02"/>
+</userroles>

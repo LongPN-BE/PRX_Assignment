@@ -21,9 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -40,28 +38,27 @@ public class SearchServlet extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             CityModel cityModel = new CityModel();
-            cityModel.readListCities();
-            List<City> cities = cityModel.getCities();
+            cityModel.readCity();
+            List<City> cities = cityModel.getListCity();
             HttpSession session = request.getSession();
             session.setAttribute("CITIES", cities);
 
             TourModel tourModel = new TourModel();
-            tourModel.readTours();
-            List<Tour> tours = tourModel.getTours();
+            tourModel.readTour();
+            List<Tour> tours = tourModel.getListTour();
             session.setAttribute("TOURS", tours);
 
             TourTypeModel tourtypeModel = new TourTypeModel();
-            tourtypeModel.readTourTypes();
+            tourtypeModel.readTourType();
             List<TourType> tourTypes = tourtypeModel.getListTourType();
             session.setAttribute("TOURTYPES", tourTypes);
 
-            TouristDestinationModel touristdestinationModel = new TouristDestinationModel();
-            touristdestinationModel.readListTouristDestinations();
-            List<TouristDestination> touristDestinations = touristdestinationModel.getTouristDestinations();
-            session.setAttribute("TOURISTDESTINATIONS", touristDestinations);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
+            TouristDestinationModel touristModel = new TouristDestinationModel();
+            touristModel.readTourist();
+            List<TouristDestination> tourist = touristModel.getListTourist();
+            session.setAttribute("TOURIST", tourist);
+            
+        } catch (JAXBException ex) {
             Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             response.sendRedirect("home.jsp");

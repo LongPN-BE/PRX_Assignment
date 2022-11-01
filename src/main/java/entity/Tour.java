@@ -5,7 +5,13 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +23,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tour{
+@XmlRootElement(name = "tour")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Tour implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private String id;
     private String name;
     private String startDate;
@@ -26,5 +36,7 @@ public class Tour{
     private String content;
     private String img;
 
-    private List<TourDetail> listTourDetails;
+    @XmlElementWrapper(name = "tourdeatils")
+    @XmlElement(name = "tourdeatil")
+    private List<TourDetail> listTourDetail;
 }

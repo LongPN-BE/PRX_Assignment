@@ -16,19 +16,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ *
+ * @author Pc
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement(name = "city")
+@XmlRootElement(name = "class")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class City  implements Serializable{
+public class Root implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    private String id;
-    private String name;
-    private String description;
+    @XmlElementWrapper(name = "cities")
+    @XmlElement(name = "city")
+    private List<City> listCity;
 
-    @XmlElementWrapper(name = "touristdestinations")
-    @XmlElement(name = "touristdestination")
-    private List<TouristDestination> listTourist;
+    @XmlElementWrapper(name = "tourtypes")
+    @XmlElement(name = "tourtype")
+    private List<TourType> listTourType;
+    
+    
+    
 }
