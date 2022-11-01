@@ -33,15 +33,56 @@ public class TourTypeModel {
         }
     }
 
-    public TourType searchTourType(String name) throws IOException, JAXBException {
+    public TourType searchTourTypeByName(String name) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListTourType().size(); i++) {
-            if(root.getListTourType().get(i).getName().contains(name)){
+            if (root.getListTourType().get(i).getName().contains(name)) {
                 return root.getListTourType().get(i);
             }
         }
         return null;
+    }
+
+    public TourType searchTourTypeByID(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getId().contains(id)) {
+                return root.getListTourType().get(i);
+            }
+        }
+        return null;
+    }
+
+    public boolean updateTourType(TourType tourType) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getId().contains(tourType.getId())) {
+                root.getListTourType().get(i).setName(tourType.getName());
+                root.getListTourType().get(i).setDescription(tourType.getDescription());
+                db.marshaller(root);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteTourType(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getId().contains(id)) {
+                root.getListTourType().remove(i);
+                db.marshaller(root);
+                return true;
+            }
+        }
+        return false;
     }
 }

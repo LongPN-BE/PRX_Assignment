@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
 <class>
     <cities>
         <city>
             <id>1</id>
-            <name>Ho Chi Minh</name>
-            <description>Dep</description>
+            <name>Hồ Chí Minh</name>
+            <description>Thành Phố Sầm Uất</description>
             <touristdestinations>
                 <touristdestination>
                     <id>1</id>
@@ -86,7 +85,7 @@
             <tours>
                 <tour>
                     <id>1</id>
-                    <name>Ho Chi Minh - Ha Noi</name>
+                    <name>Ho Chi Minh - Ha Noi i</name>
                     <startDate>10/10/2022</startDate>
                     <endDate>20/10/2022</endDate>
                     <days>10days</days>
@@ -122,7 +121,7 @@
             </tours>
         </tourtype>
         <tourtype>
-            <id>002</id>
+            <id>2</id>
             <name>Family</name>
             <description>Bad</description>
             <tours>

@@ -6,11 +6,18 @@
 package utils;
 
 import entity.Root;
+import entity.extra.*;
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -25,7 +32,7 @@ public class DBUtil {
 //        return doc;
 //    }
     public Root unmarshaller() throws JAXBException {
-        File f = new File("data.xml");
+        File f = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml");
         JAXBContext jAXBContext;
         jAXBContext = JAXBContext.newInstance(Root.class);
         Unmarshaller u = jAXBContext.createUnmarshaller();
@@ -34,11 +41,34 @@ public class DBUtil {
     }
 
     public boolean marshaller(Root root) throws JAXBException {
-        File f = new File("data.xml");
-        JAXBContext jAXBContext;
-        jAXBContext = JAXBContext.newInstance(Root.class);
-        Unmarshaller u = jAXBContext.createUnmarshaller();
-        root = (Root) u.unmarshal(f);
+        JAXBContext jc = JAXBContext.newInstance(Root.class);
+        javax.xml.bind.Marshaller m = jc.createMarshaller();
+        m.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        m.marshal(root, new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml"));
         return true;
+    }
+
+    public Document domRole() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroles.xml");
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(inputFile);
+        return doc;
+    }
+
+    public Document domUser() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrusers.xml");
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(inputFile);
+        return doc;
+    }
+
+    public Document domUserRole() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroleuser.xml");
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(inputFile);
+        return doc;
     }
 }

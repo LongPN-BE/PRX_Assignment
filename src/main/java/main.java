@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-import entity.*;
-import models.*;
-
 import java.io.IOException;
-import java.util.List;
 import javax.xml.bind.JAXBException;
-
+import javax.xml.parsers.ParserConfigurationException;
+import models.extra.RoleModel;
+import models.extra.RoleUserModel;
+import models.extra.UserModel;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -18,26 +18,23 @@ import javax.xml.bind.JAXBException;
  */
 public class main {
 
-    public static void main(String[] args) throws IOException, JAXBException {
-        CityModel cityModel = new CityModel();
-        cityModel.readCity();
-        List<City> cities = cityModel.getListCity();
-        System.out.println(cities);
-        System.out.println("Search City: " + cityModel.searchCityByName("Da"));
-        
-        TourModel tourModel = new TourModel();
-        tourModel.readTour();
-        List<Tour> tours = tourModel.getListTour();
-        System.out.println(tours);
-        
-        TourTypeModel tourtypeModel = new TourTypeModel();
-        tourtypeModel.readTourType();
-        List<TourType> tourTypes = tourtypeModel.getListTourType();
-        System.out.println(tourTypes);
+    public static void main(String[] args) throws IOException, JAXBException, ParserConfigurationException, SAXException {
+        RoleUserModel rumodel = new RoleUserModel();
+        RoleModel rmodel = new RoleModel();
+        UserModel umodel = new UserModel();
+        rumodel.initData();
+        rmodel.initData();
+        umodel.initData();
+//        System.out.println(rmodel.getList());
+//        System.out.println(umodel.getListUser());
+//        System.out.println(rumodel.getList());
 
-        TouristDestinationModel touristModel = new TouristDestinationModel();
-        touristModel.readTourist();
-        List<TouristDestination> tourist = touristModel.getListTourist();
-        System.out.println(tourist);
+        System.out.println(rumodel.login("mrnam1", "123456"));
+        System.out.println("-----------");
+        for (int i = 0; i < rumodel.getList().size(); i++) {
+            System.out.println(" Role :" + rmodel.searchRoleByID(rumodel.getList().get(i).getRoleid()));
+            System.out.println("User Match : " + umodel.searchUserByID(rumodel.getList().get(i).getUserid()));
+
+        }
     }
 }

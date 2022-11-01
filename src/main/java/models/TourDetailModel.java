@@ -18,6 +18,8 @@ import utils.DBUtil;
  */
 public class TourDetailModel {
 
+    DBUtil db = new DBUtil();
+
     private List<TourDetail> listtourdetail = new ArrayList<>();
 
     public List<TourDetail> getListTourDetail() {
@@ -25,8 +27,6 @@ public class TourDetailModel {
     }
 
     public void readTourDetail() throws IOException, JAXBException {
-        // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
@@ -38,17 +38,75 @@ public class TourDetailModel {
     }
 
     public TourDetail searchTourDetailById(String id) throws IOException, JAXBException {
-        // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
                 for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
-                    if(root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(id))
-                   return root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k);
+                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(id)) {
+                        return root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k);
+                    }
                 }
             }
         }
         return null;
+    }
+
+    public boolean updateTourDetail(TourDetail tourDetail) throws IOException, JAXBException {
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
+                        root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).setCityid(tourDetail.getCityid());
+                        db.marshaller(root);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+//    public boolean createTourDetail(TourDetail tourDetail) throws IOException, JAXBException {
+//        // đọc file input.xml
+//        DBUtil db = new DBUtil();
+//        Root root = db.unmarshaller();
+//        boolean check = false;
+//        int tourtype = 0;
+//        int tour = 0;
+//
+//        for (int i = 0; i < root.getListTourType().size(); i++) {
+//            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+//                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+//                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
+//                        tour = i;
+//                        tour = j;
+//                        check = true;
+//                    }
+//                }
+//            }
+//        }
+//        if (check) {
+//            String id = String.valueOf(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().get(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().size()).getId() + 1);
+//            tourDetail.setId(id);
+//            root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().add(tourDetail);
+//            db.marshaller(root);
+//        }
+//        return false;
+//    }
+
+    public boolean deleteTourDetail(String id) throws IOException, JAXBException {
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(id)) {
+                        root.getListTourType().get(i).getListTour().get(j).getListTourDetail().remove(k);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

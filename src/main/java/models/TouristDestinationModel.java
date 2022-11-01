@@ -49,4 +49,50 @@ public class TouristDestinationModel {
         }
         return null;
     }
+
+    public TouristDestination searchTouristByID(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                if (root.getListCity().get(i).getListTourist().get(j).getId().contains(id)) {
+                    return root.getListCity().get(i).getListTourist().get(j);
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean updateTourist(TouristDestination touristDestination) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                if (root.getListCity().get(i).getListTourist().get(j).getId().contains(touristDestination.getId())) {
+                    root.getListCity().get(i).getListTourist().get(j).setName(touristDestination.getName());
+                    root.getListCity().get(i).getListTourist().get(j).setDescription(touristDestination.getDescription());
+                    root.getListCity().get(i).getListTourist().get(j).setImg(touristDestination.getImg());
+                    db.marshaller(root);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteTourType(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getId().contains(id)) {
+                root.getListTourType().remove(i);
+                db.marshaller(root);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -45,26 +45,39 @@ public class CityModel {
         return null;
     }
 
-    public boolean createCity(City city) throws IOException, JAXBException {
+    public boolean updateCity(City city) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
-        boolean check = true;
         for (int i = 0; i < root.getListCity().size(); i++) {
-            if (root.getListCity().get(i).getName().equals(city.getName())) {
-                check = false;
+            if (root.getListCity().get(i).getId().equals(city.getId())) {
+                root.getListCity().get(i).setName(city.getName());
+                root.getListCity().get(i).setDescription(city.getDescription());
+                db.marshaller(root);
+                return true;
             }
         }
-        if (check) {
-            String id = String.valueOf(root.getListCity().get(root.getListCity().size()).getId() + 1);
-            city.setId(id);
-            root.getListCity().add(city);
-            //                db.marshaller(root); 
-        }
-
         return false;
     }
 
+//    public boolean createCity(City city) throws IOException, JAXBException {
+//        // đọc file input.xml
+//        DBUtil db = new DBUtil();
+//        Root root = db.unmarshaller();
+//        boolean check = false;
+//        for (int i = 0; i < root.getListCity().size(); i++) {
+//            if (root.getListCity().get(i).getName().equals(city.getName())) {
+//                check = true;
+//            }
+//        }
+//        if (check) {
+//            String id = String.valueOf(root.getListCity().get(root.getListCity().size()).getId() + 1);
+//            city.setId(id);
+//            root.getListCity().add(city);
+//            db.marshaller(root);
+//        }
+//        return false;
+//    }
     public boolean deleteCity(String id) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
@@ -72,7 +85,7 @@ public class CityModel {
         for (int i = 0; i < root.getListCity().size(); i++) {
             if (root.getListCity().get(i).getId().equals(id)) {
                 root.getListCity().remove(i);
-//                db.marshaller(root);
+                db.marshaller(root);
                 return true;
             }
         }
