@@ -26,9 +26,9 @@ public class main {
         rmodel.initData();
         umodel.initData();
 //        System.out.println(umodel.searchUserByID("u01"));
-        System.out.println(rumodel.login("mrnam1", "123456"));
+        System.out.println(rumodel.login("mrnam2", "123456"));
         
-        System.out.println(umodel.checkaccount("mrnam1", "123456"));
+        System.out.println(umodel.checkaccount("mrnam2", "123456"));
         System.out.println(rumodel.getList());
 
 

@@ -32,7 +32,7 @@ public class DBUtil {
 //        return doc;
 //    }
     public Root unmarshaller() throws JAXBException {
-        File f = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml");
+        File f = new File("/Users/apple/Desktop/PRX_Assignment/PRX_Assignment/data.xml");
         JAXBContext jAXBContext;
         jAXBContext = JAXBContext.newInstance(Root.class);
         Unmarshaller u = jAXBContext.createUnmarshaller();
@@ -44,12 +44,12 @@ public class DBUtil {
         JAXBContext jc = JAXBContext.newInstance(Root.class);
         javax.xml.bind.Marshaller m = jc.createMarshaller();
         m.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        m.marshal(root, new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/data.xml"));
+        m.marshal(root, new File("/Users/apple/Desktop/PRX_Assignment/PRX_Assignment/data.xml"));
         return true;
     }
 
     public Document domRole() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroles.xml");
+        File inputFile = new File("/Users/apple/Desktop/PRX_Assignment/PRX_Assignment/hrroles.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
@@ -57,7 +57,7 @@ public class DBUtil {
     }
 
     public Document domUser() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrusers.xml");
+        File inputFile = new File("/Users/apple/Desktop/PRX_Assignment/PRX_Assignment/hrusers.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
@@ -65,7 +65,7 @@ public class DBUtil {
     }
 
     public Document domUserRole() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroleuser.xml");
+        File inputFile = new File("/Users/apple/Desktop/PRX_Assignment/PRX_Assignment/hrroleuser.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
