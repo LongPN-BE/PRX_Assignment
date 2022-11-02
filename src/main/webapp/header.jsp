@@ -50,20 +50,13 @@
                                         <ul id="navigation">
                                             <li><a class="active" href="home.jsp">home</a></li>
                                             <li><a href="about.jsp">About</a></li>
-                                            <li><a class="" href="travel_destination.html">Destination</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="destination_details.html">Destinations details</a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a class="" href="destination.jsp">Destination</a></li>
+                                            <li><a href="tours.jsp">Tours</a></li>
+                                            
+                                            <!--User != null thì hiện-->
+                                            <li><a href="page_management.jsp">Page Management</a></li>
+                                            <!--User != null thì hiện-->
+                                            
                                         </ul>
                                     </nav>
                                 </div>
@@ -76,9 +69,7 @@
                                     <div class="social_links d-none d-xl-block">
                                         <ul>
                                             <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
                                             <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
                                         </ul>
                                     </div>
                                 </div>
