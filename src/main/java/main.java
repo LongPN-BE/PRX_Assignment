@@ -25,16 +25,18 @@ public class main {
         rumodel.initData();
         rmodel.initData();
         umodel.initData();
-//        System.out.println(rmodel.getList());
-//        System.out.println(umodel.getListUser());
-//        System.out.println(rumodel.getList());
-
+//        System.out.println(umodel.searchUserByID("u01"));
         System.out.println(rumodel.login("mrnam1", "123456"));
-        System.out.println("-----------");
-        for (int i = 0; i < rumodel.getList().size(); i++) {
-            System.out.println(" Role :" + rmodel.searchRoleByID(rumodel.getList().get(i).getRoleid()));
-            System.out.println("User Match : " + umodel.searchUserByID(rumodel.getList().get(i).getUserid()));
+        
+        System.out.println(umodel.checkaccount("mrnam1", "123456"));
+        System.out.println(rumodel.getList());
 
-        }
+
+//        System.out.println("-----------");
+//        for (int i = 0; i < rumodel.getList().size(); i++) {
+//            System.out.println(" Role :" + rmodel.searchRoleByID(rumodel.getList().get(i).getRoleid()));
+//            System.out.println("User Match : " + umodel.searchUserByID(rumodel.getList().get(i).getUserid()));
+//
+//        }
     }
 }

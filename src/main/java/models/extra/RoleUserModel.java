@@ -11,7 +11,6 @@ import entity.extra.RoleUser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -36,9 +35,9 @@ public class RoleUserModel {
         return this.listroleuser;
     }
 
-    public void initData() throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public void initData() throws IOException, ParserConfigurationException, SAXException {
         // đọc file input.xml
-        Document doc = db.domRole();
+        Document doc = db.domUserRole();
         doc.getDocumentElement().normalize();
         NodeList nodeListStudent = doc.getElementsByTagName("userrole");
         for (int i = 0; i < nodeListStudent.getLength(); i++) {
@@ -54,7 +53,7 @@ public class RoleUserModel {
         }
     }
 
-    public RoleUser searchRoleByID(String id) throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public RoleUser searchByID(String id) throws IOException, ParserConfigurationException, SAXException {
         if (this.listroleuser.isEmpty()) {
             this.initData();
         }
@@ -66,16 +65,16 @@ public class RoleUserModel {
         return null;
     }
 
-    public LoginResponse login(String username, String password) throws IOException, SAXException, JAXBException, ParserConfigurationException {
+    public LoginResponse login(String username, String password) throws IOException, SAXException, ParserConfigurationException {
         umodel.initData();
         rmodel.initData();
         if (this.listroleuser.isEmpty()) {
             this.initData();
         }
-        String uid = umodel.checkLogin(username, password);
-        for (int i = 0; i < this.getList().size(); i++) {
+        LoginResponse response = new LoginResponse();
+        String uid = umodel.checkaccount(username, password);
+        for (int i = 0; i < this.listroleuser.size(); i++) {
             if (this.listroleuser.get(i).getUserid().equals(uid)) {
-                LoginResponse response = new LoginResponse();
                 Role role = rmodel.searchRoleByID(this.listroleuser.get(i).getRoleid());
                 response.setRolename(role.getName());
                 response.setUsername(username);

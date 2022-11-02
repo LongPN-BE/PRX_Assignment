@@ -32,7 +32,7 @@ public class UserModel {
         return this.listuser;
     }
 
-    public void initData() throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public void initData() throws IOException, ParserConfigurationException, SAXException {
         // đọc file input.xml
         Document doc = db.domUser();
         doc.getDocumentElement().normalize();
@@ -50,7 +50,7 @@ public class UserModel {
         }
     }
 
-    public User searchUserByID(String id) throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public User searchUserByID(String id) throws IOException, ParserConfigurationException, SAXException {
         if (this.listuser.isEmpty()) {
             this.initData();
         }
@@ -62,7 +62,7 @@ public class UserModel {
         return null;
     }
 
-    public String checkLogin(String username, String password) throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public String checkaccount(String username, String password) throws IOException, ParserConfigurationException, SAXException {
         if (this.listuser.isEmpty()) {
             this.initData();
         }

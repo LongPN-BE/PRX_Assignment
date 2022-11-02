@@ -48,7 +48,7 @@ public class DBUtil {
         return true;
     }
 
-    public Document domRole() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+    public Document domRole() throws ParserConfigurationException, SAXException, IOException {
         File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroles.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -56,7 +56,7 @@ public class DBUtil {
         return doc;
     }
 
-    public Document domUser() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+    public Document domUser() throws ParserConfigurationException, SAXException, IOException {
         File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrusers.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -64,7 +64,7 @@ public class DBUtil {
         return doc;
     }
 
-    public Document domUserRole() throws JAXBException, ParserConfigurationException, SAXException, IOException {
+    public Document domUserRole() throws ParserConfigurationException, SAXException, IOException {
         File inputFile = new File("E:/Semester 8/PRX301/prxassignment/PRX_Assignment/hrroleuser.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

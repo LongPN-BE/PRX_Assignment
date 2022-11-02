@@ -32,7 +32,7 @@ public class RoleModel {
         return this.listrole;
     }
 
-    public void initData() throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public void initData() throws IOException, ParserConfigurationException, SAXException {
         // đọc file input.xml
         Document doc = db.domRole();
         doc.getDocumentElement().normalize();
@@ -49,7 +49,7 @@ public class RoleModel {
         }
     }
 
-    public Role searchRoleByID(String id) throws IOException, JAXBException, ParserConfigurationException, SAXException {
+    public Role searchRoleByID(String id) throws IOException, ParserConfigurationException, SAXException {
         if (this.listrole.isEmpty()) {
             this.initData();
         }
