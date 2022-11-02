@@ -27,6 +27,7 @@ target/
 /.nb-gradle/
 build/
 !**/src/main/**/build/
+!**/src/main/java/utils/DBUtil.java
 !**/src/test/**/build/
 
 ### VS Code ###
