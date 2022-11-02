@@ -11,14 +11,18 @@
         <title>Web Tourist</title>
     </head>
     <body>
+        <header>
+            <%@include file="header.jsp" %>
+        </header>
         <%@include file="cities.jsp" %>
         <%@include file="touristdestination.jsp" %>
         
         --
         <%@include file="tours.jsp" %>
         <%@include file="tourtypes.jsp" %>
+        <footer>
+            <%@include file="footer.jsp" %>
+        </footer>
     </body>
-    <footer>
-        <%@include file="footer.jsp" %>
-    </footer>
+    
 </html>
