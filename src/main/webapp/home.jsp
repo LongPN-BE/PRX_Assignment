@@ -15,7 +15,7 @@
             <%@include file="header.jsp" %>
         </header>
         <%@include file="slider.jsp" %>
-        <%@include file="cities.jsp" %>
+        <%@include file="list_cities.jsp" %>
         <%@include file="list_destination.jsp" %>
         <%@include file="endingpage.jsp" %>
         <%@include file="list_tours.jsp" %>
