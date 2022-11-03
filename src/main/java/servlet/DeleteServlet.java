@@ -11,14 +11,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.*;
+import entity.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "DeleteServlet", urlPatterns = {"/DeleteServlet"})
+public class DeleteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +35,36 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-         session.removeAttribute("USER");
-         response.sendRedirect("Home.jsp");
+        PrintWriter out = response.getWriter();
+        String tourId = request.getParameter("txtTourID");
+        String cityId = request.getParameter("txtCityID");
+        String tourDetailId = request.getParameter("txtTourDetailID");
+        String tourTypeId = request.getParameter("txtTourTypeID");
+        String tourDesId = request.getParameter("txtTourDestinationID");
+        boolean check = false;
+        String url = "";
+        try {
+            if (!tourId.isEmpty()) {
+                TourModel tourModel = new TourModel();
+                check = tourModel.deleteTour(tourId);
+            } else if (!cityId.isEmpty()) {
+                CityModel cityModel = new CityModel();
+                 check = cityModel.deleteCity(cityId);
+            } else if (!tourDetailId.isEmpty()) {
+                TourDetailModel tourDetailModel = new TourDetailModel();
+                 check = tourDetailModel.deleteTourDetail(tourDetailId);                
+            } else if (!tourTypeId.isEmpty()) {
+                TourTypeModel tourTypeModel = new TourTypeModel();
+                 check = tourTypeModel.deleteTourType(tourTypeId);
+            } else if (!tourDesId.isBlank()) {
+                TouristDestinationModel destinationModel = new TouristDestinationModel();
+                 check = destinationModel.deleteTourType(tourDesId); 
+            }
+        } catch (Exception e) {
+            Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            request.getRequestDispatcher("").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

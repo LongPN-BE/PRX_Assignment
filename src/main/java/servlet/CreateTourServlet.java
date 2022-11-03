@@ -4,21 +4,24 @@
  */
 package servlet;
 
+import entity.Tour;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.TourModel;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "CreateTourServlet", urlPatterns = {"/CreateTourServlet"})
+public class CreateTourServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +35,22 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-         session.removeAttribute("USER");
-         response.sendRedirect("Home.jsp");
+        String tourTypeID = request.getParameter("tourTypeID");
+        Tour tour = new Tour();
+        tour.setName(request.getParameter("txtName"));
+        tour.setStartDate(request.getParameter("txtStartDate"));
+        tour.setEndDate(request.getParameter("txtEndDate"));
+        tour.setDays(request.getParameter("txtDay"));
+        tour.setContent(request.getParameter("txtContent"));
+        tour.setImg(request.getParameter("txtImg"));
+        TourModel model = new TourModel();
+        try {
+            model.createTour(tour, tourTypeID);
+        } catch (Exception e) {
+            Logger.getLogger(CreateTourDestinationServlet.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            request.getRequestDispatcher("").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,21 +4,24 @@
  */
 package servlet;
 
+import entity.Tour;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.TourModel;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "UpdateTourServlet", urlPatterns = {"/UpdateTourServlet"})
+public class UpdateTourServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +35,24 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-         session.removeAttribute("USER");
-         response.sendRedirect("Home.jsp");
+        PrintWriter out = response.getWriter();
+        String tourId = request.getParameter("TourID");
+        String name = request.getParameter("txtName");
+        String startDate = request.getParameter("txtStartDate");;
+        String endDate = request.getParameter("txtEndDate");;
+        String days = request.getParameter("txtDays");;
+        String content = request.getParameter("txtContent");;
+        String img = request.getParameter("txtImg");
+        TourModel tourModel = new TourModel();
+        boolean check;
+        try {
+            Tour tour = new Tour(img, name, startDate, endDate, days, content, img);
+            check = tourModel.updateTour(tour);
+        } catch (Exception e) {
+            Logger.getLogger(UpdateTourServlet.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            request.getRequestDispatcher("").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

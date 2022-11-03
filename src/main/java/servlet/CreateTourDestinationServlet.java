@@ -4,21 +4,24 @@
  */
 package servlet;
 
+import entity.TouristDestination;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.TouristDestinationModel;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "CreateTourDestinationServlet", urlPatterns = {"/CreateTourDestinationServlet"})
+public class CreateTourDestinationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +35,19 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-         session.removeAttribute("USER");
-         response.sendRedirect("Home.jsp");
+        String city = request.getParameter("CityID");
+        TouristDestination tourist = new TouristDestination();
+        tourist.setName(request.getParameter("txtName"));
+        tourist.setDescription(request.getParameter("txtDes"));
+        tourist.setImg(request.getParameter("txtImg"));
+        TouristDestinationModel model = new TouristDestinationModel();
+        try {
+            model.createTourist(tourist, city);
+        } catch (Exception e) {
+            Logger.getLogger(CreateTourDestinationServlet.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            request.getRequestDispatcher("").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

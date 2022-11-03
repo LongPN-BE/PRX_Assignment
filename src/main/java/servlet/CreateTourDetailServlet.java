@@ -4,21 +4,24 @@
  */
 package servlet;
 
+import entity.TourDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.TourDetailModel;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "CreateTourDetailServlet", urlPatterns = {"/CreateTourDetailServlet"})
+public class CreateTourDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +35,17 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-         session.removeAttribute("USER");
-         response.sendRedirect("Home.jsp");
+        String tourId = request.getParameter("tourID");
+        TourDetail tourDetail = new TourDetail();
+        tourDetail.setCityid(request.getParameter("CityID"));
+        TourDetailModel model = new TourDetailModel();
+        try {
+            model.createTourDetail(tourDetail, tourId);
+        } catch (Exception e) {
+            Logger.getLogger(CreateTourDetailServlet.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            request.getRequestDispatcher("").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
