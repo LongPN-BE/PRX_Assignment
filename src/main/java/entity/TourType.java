@@ -35,4 +35,12 @@ public class TourType implements Serializable{
     @XmlElementWrapper(name = "tours")
     @XmlElement(name = "tour")
     private List<Tour> listTour;
+
+    public TourType(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+    
+    
 }
