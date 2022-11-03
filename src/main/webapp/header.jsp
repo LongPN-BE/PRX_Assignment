@@ -31,6 +31,7 @@
 </head>
 
 <c:set value="${sessionScope.USER}" var="user" />
+<c:set value="${sessionScope.ROLE}" var="role" />
 <body>
 
     <!-- header-start -->
@@ -61,7 +62,7 @@
                                             <li><a href="page_management.jsp">Page Management</a></li>
                                             </c:if>
                                             <!--User != null thì hiện-->
-                                            
+                                            <p>${user}</p>
                                         </ul>
                                     </nav>
                                 </div>
@@ -70,14 +71,20 @@
                                 <div class="social_wrap d-flex align-items-center justify-content-end">
                                     <div class="number">
                                         <p> <i class="fa fa-phone"></i> 10(256)-928 256</p>
+                                        
                                     </div>
                                     <div class="social_links d-none d-xl-block">
                                         <ul>
+                                            
                                             <c:if test="${empty user}">
                                             <li><a href="login.jsp" class="genric-btn success radius">Login</a></li>
                                             </c:if>
                                             <c:if test="${not empty user}">
-                                            <li><a href="" class="genric-btn danger radius">Logout</a></li>
+                                            <li>
+                                            <form action="LogoutServlet" method="post">
+                                            <button type="submit" class="genric-btn danger radius" >Logout</button>
+                                            </form>
+                                            </li>
                                             </c:if>
                                         </ul>
                                     </div>

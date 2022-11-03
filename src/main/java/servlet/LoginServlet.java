@@ -37,7 +37,8 @@ public class LoginServlet extends HttpServlet {
             account = model.login(username, password);
             if (account != null) {
                 HttpSession session = request.getSession();
-                request.setAttribute("USER", account);
+                session.setAttribute("USER", account);
+                session.setAttribute("ROLE", account.getRolename());
                 ///session.setMaxInactiveInterval(30 + 60);
                 url = "DispatcherServlet";
             } else {
