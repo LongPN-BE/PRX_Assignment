@@ -45,6 +45,18 @@ public class CityModel {
         return null;
     }
 
+    public int searchLocationCityByID(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            if (root.getListCity().get(i).getId().contains(id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public boolean updateCity(City city) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
@@ -60,24 +72,28 @@ public class CityModel {
         return false;
     }
 
-//    public boolean createCity(City city) throws IOException, JAXBException {
-//        // đọc file input.xml
-//        DBUtil db = new DBUtil();
-//        Root root = db.unmarshaller();
-//        boolean check = false;
-//        for (int i = 0; i < root.getListCity().size(); i++) {
-//            if (root.getListCity().get(i).getName().equals(city.getName())) {
-//                check = true;
-//            }
-//        }
-//        if (check) {
-//            String id = String.valueOf(root.getListCity().get(root.getListCity().size()).getId() + 1);
-//            city.setId(id);
-//            root.getListCity().add(city);
-//            db.marshaller(root);
-//        }
-//        return false;
-//    }
+    public boolean createCity(City city) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        boolean check = true;
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            if (root.getListCity().get(i).getName().equals(city.getName())) {
+                check = false;
+            }
+        }
+        if (check) {
+            String idLast = root.getListCity().get(root.getListCity().size()).getId();
+            String id = String.valueOf( idLast + 1);
+            city.setId(id);
+            city.setListTourist(null);
+            root.getListCity().add(city);
+            db.marshaller(root);
+            return true;
+        }
+        return false;
+    }
+
     public boolean deleteCity(String id) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();

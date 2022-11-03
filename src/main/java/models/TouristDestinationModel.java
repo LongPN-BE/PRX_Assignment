@@ -19,6 +19,8 @@ import utils.DBUtil;
  */
 public class TouristDestinationModel {
 
+    DBUtil db = new DBUtil();
+
     private List<TouristDestination> listtourist = new ArrayList<>();
 
     public List<TouristDestination> getListTourist() {
@@ -27,7 +29,6 @@ public class TouristDestinationModel {
 
     public void readTourist() throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
@@ -38,7 +39,6 @@ public class TouristDestinationModel {
 
     public TouristDestination searchTouristByName(String name) throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
@@ -52,7 +52,6 @@ public class TouristDestinationModel {
 
     public TouristDestination searchTouristByID(String id) throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
@@ -64,9 +63,29 @@ public class TouristDestinationModel {
         return null;
     }
 
+    public boolean createTourist(TouristDestination touristDestination, String cityID) throws IOException, JAXBException {
+        // đọc file input.xml
+        Root root = db.unmarshaller();
+        CityModel cmodel = new CityModel();
+        int numCity = cmodel.searchLocationCityByID(cityID);
+        boolean check = true;
+        for (int i = 0; i < root.getListCity().get(numCity).getListTourist().size(); i++) {
+            if (root.getListCity().get(numCity).getListTourist().get(i).getName().equals(touristDestination.getName())) {
+                check = false;
+            }
+        }
+        if (check) {
+            String id = String.valueOf(root.getListCity().get(numCity).getListTourist().get(root.getListCity().get(numCity).getListTourist().size()).getId() + 1);
+            touristDestination.setId(id);
+            root.getListCity().get(numCity).getListTourist().add(touristDestination);
+            db.marshaller(root);
+            return true;
+        }
+        return false;
+    }
+
     public boolean updateTourist(TouristDestination touristDestination) throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
@@ -84,7 +103,6 @@ public class TouristDestinationModel {
 
     public boolean deleteTourType(String id) throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).getId().contains(id)) {

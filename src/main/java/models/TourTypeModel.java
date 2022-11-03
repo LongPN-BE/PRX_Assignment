@@ -72,6 +72,26 @@ public class TourTypeModel {
         return false;
     }
 
+    public boolean createTourType(TourType tourType) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        boolean check = true;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getName().equals(tourType.getName())) {
+                check = false;
+            }
+        }
+        if (true) {
+            String id = String.valueOf(root.getListTourType().get(root.getListTourType().size()).getId() + 1);
+            tourType.setId(id);
+            root.getListTourType().add(tourType);
+            db.marshaller(root);
+            return true;
+        }
+        return false;
+    }
+
     public boolean deleteTourType(String id) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();

@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
+
+import entity.*;
 import java.io.IOException;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
-import models.extra.RoleModel;
-import models.extra.RoleUserModel;
-import models.extra.UserModel;
+import models.*;
 import org.xml.sax.SAXException;
 
 /**
@@ -19,17 +19,16 @@ import org.xml.sax.SAXException;
 public class main {
 
     public static void main(String[] args) throws IOException, JAXBException, ParserConfigurationException, SAXException {
-        RoleUserModel rumodel = new RoleUserModel();
-        RoleModel rmodel = new RoleModel();
-        UserModel umodel = new UserModel();
-        rumodel.initData();
-        rmodel.initData();
-        umodel.initData();
-//        System.out.println(umodel.searchUserByID("u01"));
-        System.out.println(rumodel.login("mrnam2", "123456"));
+        CityModel cmodel = new CityModel();
+        TourTypeModel ttmodel = new TourTypeModel();
+        TouristDestinationModel tdmodel = new TouristDestinationModel();
         
-        System.out.println(umodel.checkaccount("mrnam2", "123456"));
-        System.out.println(rumodel.getList());
+        City city = new City();
+        cmodel.createCity(city);
+        
+        
+//        cmodel.readCity();
+//        System.out.println(cmodel.getListCity());
 
 
 //        System.out.println("-----------");
