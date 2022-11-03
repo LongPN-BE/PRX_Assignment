@@ -38,7 +38,7 @@ public class DBUtil {
     private static final String pathPhien = "";
 
     public Root unmarshaller() throws JAXBException {
-        File f = new File(pathLong + "data.xml");
+        File f = new File(pathAnh + "data.xml");
         JAXBContext jAXBContext;
         jAXBContext = JAXBContext.newInstance(Root.class);
         Unmarshaller u = jAXBContext.createUnmarshaller();
@@ -50,12 +50,12 @@ public class DBUtil {
         JAXBContext jc = JAXBContext.newInstance(Root.class);
         javax.xml.bind.Marshaller m = jc.createMarshaller();
         m.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        m.marshal(root, new File(pathLong + "data.xml"));
+        m.marshal(root, new File(pathAnh + "data.xml"));
         return true;
     }
 
     public Document domRole() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File(pathLong + "hrroles.xml");
+        File inputFile = new File(pathAnh + "hrroles.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
@@ -63,7 +63,7 @@ public class DBUtil {
     }
 
     public Document domUser() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File(pathLong + "hrusers.xml");
+        File inputFile = new File(pathAnh + "hrusers.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
@@ -71,7 +71,7 @@ public class DBUtil {
     }
 
     public Document domUserRole() throws ParserConfigurationException, SAXException, IOException {
-        File inputFile = new File(pathLong + "hrroleuser.xml");
+        File inputFile = new File(pathAnh + "hrroleuser.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(inputFile);
