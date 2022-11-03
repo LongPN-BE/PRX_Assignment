@@ -77,14 +77,18 @@ public class TourTypeModel {
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         boolean check = true;
+        int lastindex = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).getName().equals(tourType.getName())) {
                 check = false;
             }
+            lastindex = i;
         }
         if (true) {
-            String id = String.valueOf(root.getListTourType().get(root.getListTourType().size()).getId() + 1);
-            tourType.setId(id);
+            int id = Integer.parseInt(root.getListTourType().get(lastindex).getId()) + 1;
+            tourType.setId(String.valueOf(id));
+            List<Tour> listtour = new ArrayList<>();
+            tourType.setListTour(listtour);
             root.getListTourType().add(tourType);
             db.marshaller(root);
             return true;

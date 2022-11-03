@@ -93,6 +93,12 @@
                     <description>Demo create</description>
                     <img>4</img>
                 </touristdestination>
+                <touristdestination>
+                    <id>1</id>
+                    <name>Demo create 3</name>
+                    <description>Demo create</description>
+                    <img>4</img>
+                </touristdestination>
             </touristdestinations>
         </city>
     </cities>

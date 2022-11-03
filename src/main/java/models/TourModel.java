@@ -82,28 +82,28 @@ public class TourModel {
         return false;
     }
 
-//    public boolean createTour(Tour tour) throws IOException, JAXBException {
-//        // đọc file input.xml
-//        DBUtil db = new DBUtil();
-//        Root root = db.unmarshaller();
-//        boolean check = false;
-//        int tourtypeplace = 0;
-//        for (int i = 0; i < root.getListTourType().size(); i++) {
-//            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-//                if (root.getListTourType().get(i).getListTour().get(j).getId().contains(tour.getId())) {
-//                    tourtypeplace = i;
-//                    return true;
-//                }
-//            }
-//        }
-//        if (check) {
-//            String id = String.valueOf(root.getListTourType().get(tourtypeplace).getListTour().get(root.getListTourType().get(tourtypeplace).getListTour().size()).getId() + 1);
-//            tour.setId(id);
-//            root.getListTourType().get(tourtypeplace).getListTour().add(tour);
-//            db.marshaller(root);
-//        }
-//        return false;
-//    }
+    public boolean createTour(Tour tour) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        boolean check = false;
+        int tourtypeplace = 0;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                if (root.getListTourType().get(i).getListTour().get(j).getId().contains(tour.getId())) {
+                    tourtypeplace = i;
+                }
+                
+            }
+        }
+        if (check) {
+            String id = String.valueOf(root.getListTourType().get(tourtypeplace).getListTour().get(root.getListTourType().get(tourtypeplace).getListTour().size()).getId() + 1);
+            tour.setId(id);
+            root.getListTourType().get(tourtypeplace).getListTour().add(tour);
+            db.marshaller(root);
+        }
+        return false;
+    }
     public boolean deleteTour(String id) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();

@@ -31,7 +31,7 @@ public class main {
 //        System.out.println(cmodel.getListCity());
 
         TouristDestination tourist = new TouristDestination();
-        tourist.setName("Demo create 2");
+        tourist.setName("Demo create 3");
         tourist.setDescription("Demo create");
         tourist.setImg("4");
 

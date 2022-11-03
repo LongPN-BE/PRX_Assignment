@@ -39,4 +39,16 @@ public class Tour implements Serializable{
     @XmlElementWrapper(name = "tourdeatils")
     @XmlElement(name = "tourdeatil")
     private List<TourDetail> listTourDetail;
+
+    public Tour(String id, String name, String startDate, String endDate, String days, String content, String img) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.days = days;
+        this.content = content;
+        this.img = img;
+    }
+    
+    
 }
