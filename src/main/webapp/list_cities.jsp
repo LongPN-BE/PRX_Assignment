@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="content">
                                     <p class="d-flex align-items-center">${item.name}
-                                        <a href="travel_destination.html">${item.description} </a>
+                                        <a href="#">${item.description} </a>
                                     </p>
                                 </div>
                             </div>
