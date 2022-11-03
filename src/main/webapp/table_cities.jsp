@@ -27,6 +27,8 @@
 
 
             <c:set value="${sessionScope.CITIES}" var="listCities" />
+            
+            <c:set value="${requestScope.USER}" var="user" />
 
             <body>
 
@@ -69,7 +71,11 @@
                                             <td>${item.name}</td>
                                             <td>${item.description}</td>
                                             <td><a href="#" class="genric-btn warning radius">Edit</a></td>
+                                    <h1>${user.rolename}</h1>
+                                    <h1>${user.username}</h1>
+                                            <c:if test="${user.rolename=='supermod'||user.rolename =='admin'}">
                                             <td><a href="#" class="genric-btn danger radius">Delete</a></td>
+                                            </c:if>
                                         </tr>
                                     </c:forEach>
 

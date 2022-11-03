@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +30,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+<c:set value="${sessionScope.USER}" var="user" />
 <body>
 
     <!-- header-start -->
@@ -39,7 +42,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="home.jsp">
                                         <img src="img/logo.png" alt="">
                                     </a>
                                 </div>
@@ -54,7 +57,9 @@
                                             <li><a href="tours.jsp">Tours</a></li>
                                             
                                             <!--User != null thì hiện-->
+                                             <c:if test="${not empty user}">
                                             <li><a href="page_management.jsp">Page Management</a></li>
+                                            </c:if>
                                             <!--User != null thì hiện-->
                                             
                                         </ul>
@@ -68,19 +73,15 @@
                                     </div>
                                     <div class="social_links d-none d-xl-block">
                                         <ul>
-                                            <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
+                                            <c:if test="${empty user}">
+                                            <li><a href="login.jsp" class="genric-btn success radius">Login</a></li>
+                                            </c:if>
+                                            <c:if test="${not empty user}">
+                                            <li><a href="" class="genric-btn danger radius">Logout</a></li>
+                                            </c:if>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="seach_icon">
-                                <a class="pt-4" data-toggle="modal" data-target="#exampleModalCenter" href="#">
-                                    LOGIN
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = "LoginDemo.jsp";
+        String url = "login.jsp";
         String username = request.getParameter("txtUsername");
         String password = request.getParameter("txtPassword");
         RoleUserModel model = new RoleUserModel();
@@ -37,12 +37,12 @@ public class LoginServlet extends HttpServlet {
             account = model.login(username, password);
             if (account != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("USER", account);
-                session.setMaxInactiveInterval(30 + 60);
+                request.setAttribute("USER", account);
+                ///session.setMaxInactiveInterval(30 + 60);
                 url = "DispatcherServlet";
             } else {
                 request.setAttribute("MESS", "User ID or Password incorrect");
-                url = "LoginDemo.jsp";
+                url = "login.jsp";
             }
         } catch (Exception e) {
             log("LoadListServlet_SQL: " + e.getMessage());
