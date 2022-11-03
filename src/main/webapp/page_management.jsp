@@ -29,9 +29,7 @@
 
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <c:set value="${sessionScope.TOURIST}" var="listDes" />
-    <c:set value="${sessionScope.CITIES}" var="listCities" />
-    <c:set value="${sessionScope.TOURS}" var="listTours" />
+
 
     
     <body>

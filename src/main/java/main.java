@@ -19,29 +19,28 @@ import org.xml.sax.SAXException;
 public class main {
 
     public static void main(String[] args) throws IOException, JAXBException, ParserConfigurationException, SAXException {
-        CityModel cmodel = new CityModel();
-        TourTypeModel ttmodel = new TourTypeModel();
-        TouristDestinationModel tdmodel = new TouristDestinationModel();
+        TourTypeModel tt2model = new TourTypeModel();
+        TourModel t1moModel = new TourModel();
+        TourDetailModel tdmoModel = new TourDetailModel();
+        
+//        TourType tourType = new TourType();
+//        tourType.setName("Couple Parent");
+//        tourType.setDescription("Đii đi vui lắm");
+//        System.out.println(tt2model.createTourType(tourType));
+        
+        Tour tour = new Tour();
+        tour.setName("Đà Lạt - Phan Thiếtt 1");
+        tour.setContent("Đi để đii luôn đi");
+        tour.setDays("5 days");
+        tour.setStartDate("5/11/2022");
+        tour.setEndDate("10/11/2022");
+        tour.setImg("url01");
+        System.out.println(t1moModel.createTour(tour, "3"));
+//        
+//        TourDetail detail =new TourDetail();
+//        detail.setCityid("1");
+//        System.out.println(tdmoModel.createTourDetail(detail, "0"));
 
-//        City city = new City();
-//        city.setName("Demo Create");
-//        city.setDescription("Demo Create");
-//
-//        System.out.println(cmodel.createCity(city));
-//        cmodel.readCity();
-//        System.out.println(cmodel.getListCity());
-
-//        TouristDestination tourist = new TouristDestination();
-//        tourist.setName("Demo create 3");
-//        tourist.setDescription("Demo create");
-//        tourist.setImg("4");
-//
-//        System.out.println(tdmodel.createTourist(tourist, "4"));
-//
-//        System.out.println(tdmodel.getListTourist());
-
-        RoleUserModel model = new RoleUserModel();
-        System.out.println(model.login("mrnam1", "123456"));
 
     }
 }

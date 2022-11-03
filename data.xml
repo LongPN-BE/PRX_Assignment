@@ -187,5 +187,32 @@
                 </tour>
             </tours>
         </tourtype>
+        <tourtype>
+            <id>3</id>
+            <name>Couple Parent</name>
+            <description>Đii đi vui lắm</description>
+            <tours>
+                <tour>
+                    <id>1</id>
+                    <name>Đà Lạt - Phan Thiếtt</name>
+                    <startDate>5/11/2022</startDate>
+                    <endDate>10/11/2022</endDate>
+                    <days>5 days</days>
+                    <content>Đi để đii luôn đi</content>
+                    <img>url01</img>
+                    <tourdeatils/>
+                </tour>
+                <tour>
+                    <id>2</id>
+                    <name>Đà Lạt - Phan Thiếtt 1</name>
+                    <startDate>5/11/2022</startDate>
+                    <endDate>10/11/2022</endDate>
+                    <days>5 days</days>
+                    <content>Đi để đii luôn đi</content>
+                    <img>url01</img>
+                    <tourdeatils/>
+                </tour>
+            </tours>
+        </tourtype>
     </tourtypes>
 </class>

@@ -89,20 +89,19 @@ public class TourModel {
         boolean check = true;
         int tourtypeplace = 0;
         int lastindex = 0;
+        int id = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).getId().equals(tourtypeID)) {
                 tourtypeplace = i;
             }
         }
-        for (int i = 0; i < root.getListTourType().size(); i++) {
-            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-                if (root.getListTourType().get(i).getListTour().get(j).getName().equals(tour.getName())) {
-                    check = false;
-                }
+        for (int j = 0; j < root.getListTourType().get(tourtypeplace).getListTour().size(); j++) {
+            if (root.getListTourType().get(tourtypeplace).getListTour().get(j).getName().equals(tour.getName())) {
+                check = false;
             }
+            lastindex = j;
         }
         if (check) {
-            int id = 0;
             if (lastindex != 0) {
                 id = Integer.parseInt(root.getListTourType().get(tourtypeplace).getListTour().get(lastindex).getId()) + 1;
             }
@@ -111,6 +110,7 @@ public class TourModel {
             tour.setListTourDetail(listtourdetail);
             root.getListTourType().get(tourtypeplace).getListTour().add(tour);
             db.marshaller(root);
+            return true;
         }
         return false;
     }
