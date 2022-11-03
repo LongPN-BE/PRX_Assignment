@@ -40,6 +40,15 @@ body {
   transition: 0.3s;
 }
 
+
+.pagination li:hover{
+  cursor: pointer;
+}
+  table tbody tr {
+    display: none;
+  }
+
+
 /* line 17, ../../Arafath/CL/December/231. Travel-02/HTML/scss/theme-default.scss */
 a,
 .button {
