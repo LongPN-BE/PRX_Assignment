@@ -71,7 +71,6 @@
                                 <div class="social_wrap d-flex align-items-center justify-content-end">
                                     <div class="number">
                                         <p> <i class="fa fa-phone"></i> 10(256)-928 256</p>
-                                        
                                     </div>
                                     <div class="social_links d-none d-xl-block">
                                         <ul>
