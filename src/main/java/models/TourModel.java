@@ -65,17 +65,10 @@ public class TourModel {
     public boolean updateTour(Tour tour, String tourtypeID) throws IOException, JAXBException {
         // đọc file input.xml
         Root root = db.unmarshaller();
-        boolean check = true;
         int tourtypeplace = 0;
-        int lastindex = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).getId().equals(tourtypeID)) {
                 tourtypeplace = i;
-            }
-        }
-        for (int j = 0; j < root.getListTourType().get(tourtypeplace).getListTour().size(); j++) {
-            if (root.getListTourType().get(tourtypeplace).getListTour().get(j).getName().equals(tour.getName())) {
-                check = false;
             }
         }
         for (int i = 0; i < root.getListTourType().get(tourtypeplace).getListTour().size(); i++) {
