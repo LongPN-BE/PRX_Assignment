@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import entity.*;
 import java.io.IOException;
 import javax.xml.bind.JAXBException;
@@ -22,20 +21,24 @@ public class main {
         CityModel cmodel = new CityModel();
         TourTypeModel ttmodel = new TourTypeModel();
         TouristDestinationModel tdmodel = new TouristDestinationModel();
-        
-        City city = new City();
-        cmodel.createCity(city);
-        
-        
+
+//        City city = new City();
+//        city.setName("Demo Create");
+//        city.setDescription("Demo Create");
+//
+//        System.out.println(cmodel.createCity(city));
 //        cmodel.readCity();
 //        System.out.println(cmodel.getListCity());
 
+        TouristDestination tourist = new TouristDestination();
+        tourist.setName("Demo create");
+        tourist.setDescription("Demo create");
+        tourist.setImg("Demo create");
 
-//        System.out.println("-----------");
-//        for (int i = 0; i < rumodel.getList().size(); i++) {
-//            System.out.println(" Role :" + rmodel.searchRoleByID(rumodel.getList().get(i).getRoleid()));
-//            System.out.println("User Match : " + umodel.searchUserByID(rumodel.getList().get(i).getUserid()));
-//
-//        }
+        System.out.println(tdmodel.createTourist(tourist, "4"));
+
+        System.out.println(tdmodel.getListTourist());
+
+
     }
 }

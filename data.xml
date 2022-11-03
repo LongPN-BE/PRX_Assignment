@@ -76,6 +76,18 @@
                 </touristdestination>
             </touristdestinations>
         </city>
+        <city>
+            <id>4</id>
+            <name>Demo Create</name>
+            <description>Demo Create</description>
+            <touristdestinations>
+                <touristdestination>
+                    <name>Demo create</name>
+                    <description>Demo create</description>
+                    <img>Demo create</img>
+                </touristdestination>
+            </touristdestinations>
+        </city>
     </cities>
     <tourtypes>
         <tourtype>

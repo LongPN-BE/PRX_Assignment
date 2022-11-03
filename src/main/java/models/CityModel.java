@@ -18,6 +18,7 @@ import utils.DBUtil;
  */
 public class CityModel {
 
+    DBUtil db = new DBUtil();
     private List<City> listCity = new ArrayList<>();
 
     public List<City> getListCity() {
@@ -26,7 +27,6 @@ public class CityModel {
 
     public void readCity() throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             this.listCity.add(root.getListCity().get(i));
@@ -35,7 +35,6 @@ public class CityModel {
 
     public City searchCityByName(String name) throws IOException, JAXBException {
         // đọc file input.xml
-        DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
             if (root.getListCity().get(i).getName().contains(name)) {
@@ -50,7 +49,7 @@ public class CityModel {
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         for (int i = 0; i < root.getListCity().size(); i++) {
-            if (root.getListCity().get(i).getId().contains(id)) {
+            if (root.getListCity().get(i).getId().equals(id)) {
                 return i;
             }
         }
@@ -77,16 +76,16 @@ public class CityModel {
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         boolean check = true;
+        int lastindex = 0 ;
         for (int i = 0; i < root.getListCity().size(); i++) {
             if (root.getListCity().get(i).getName().equals(city.getName())) {
                 check = false;
             }
+            lastindex = i;
         }
         if (check) {
-            String idLast = root.getListCity().get(root.getListCity().size()).getId();
-            String id = String.valueOf( idLast + 1);
-            city.setId(id);
-            city.setListTourist(null);
+            int id = Integer.parseInt(root.getListCity().get(lastindex).getId()) + 1;
+            city.setId(String.valueOf(id));
             root.getListCity().add(city);
             db.marshaller(root);
             return true;

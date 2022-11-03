@@ -66,18 +66,32 @@ public class TouristDestinationModel {
     public boolean createTourist(TouristDestination touristDestination, String cityID) throws IOException, JAXBException {
         // đọc file input.xml
         Root root = db.unmarshaller();
-        CityModel cmodel = new CityModel();
-        int numCity = cmodel.searchLocationCityByID(cityID);
-        boolean check = true;
-        for (int i = 0; i < root.getListCity().get(numCity).getListTourist().size(); i++) {
-            if (root.getListCity().get(numCity).getListTourist().get(i).getName().equals(touristDestination.getName())) {
-                check = false;
+        int numCity = 0;
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            if (root.getListCity().get(i).getId().equals(cityID)) {
+                numCity = i;
             }
         }
-        if (check) {
-            String id = String.valueOf(root.getListCity().get(numCity).getListTourist().get(root.getListCity().get(numCity).getListTourist().size()).getId() + 1);
-            touristDestination.setId(id);
-            root.getListCity().get(numCity).getListTourist().add(touristDestination);
+        boolean check = true;
+        int lastindex = 0;
+        if (root.getListCity().get(numCity).getListTourist() != null) {
+            for (int i = 0; i < root.getListCity().get(numCity).getListTourist().size(); i++) {
+                if (root.getListCity().get(numCity).getListTourist().get(i).getName().equals(touristDestination.getName())) {
+                    check = false;
+                }
+                lastindex = i;
+            }
+            if (check) {
+                int id = Integer.parseInt(root.getListCity().get(numCity).getListTourist().get(lastindex).getId()) + 1;
+                touristDestination.setId(String.valueOf(id));
+                root.getListCity().get(numCity).getListTourist().add(touristDestination);
+                db.marshaller(root);
+                return true;
+            }
+        } else {
+            List<TouristDestination> listtourist = new ArrayList<>();
+            listtourist.add(touristDestination);
+            root.getListCity().get(numCity).setListTourist(listtourist);
             db.marshaller(root);
             return true;
         }
