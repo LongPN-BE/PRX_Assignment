@@ -51,51 +51,69 @@ public class TourDetailModel {
         return null;
     }
 
-    public boolean updateTourDetail(TourDetail tourDetail) throws IOException, JAXBException {
+    public boolean updateTourDetail(TourDetail tourDetail, String tourID, String tourtypeID) throws IOException, JAXBException {
         Root root = db.unmarshaller();
+        int placeTourType = 0;
+        int placetour = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
-            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
-                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
-                        root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).setCityid(tourDetail.getCityid());
-                        db.marshaller(root);
-                        return true;
-                    }
-                }
+            if (root.getListTourType().get(i).equals(tourtypeID)) {
+                placeTourType = i;
+            }
+        }
+        for (int i = 0; i < root.getListTourType().get(placeTourType).getListTour().size(); i++) {
+            if (root.getListTourType().get(placeTourType).getListTour().get(i).equals(tourtypeID)) {
+                placetour = i;
+            }
+        }
+        for (int i = 0; i < root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().size(); i++) {
+            if (root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().get(i).equals(tourtypeID)) {
+                root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().get(i).setCityid(tourDetail.getCityid());
+                db.marshaller(root);
+                return true;
             }
         }
         return false;
     }
 
-    public boolean createTourDetail(TourDetail tourDetail, String tourID) throws IOException, JAXBException {
+    public boolean createTourDetail(TourDetail tourDetail, String tourID, String tourtypeID) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
         boolean check = false;
-        int tourtype = 0;
-        int tour = 0;
+        int placeTourType = 0;
+        int placetour = 0;
         int lastindex = 0;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).equals(tourtypeID)) {
+                placeTourType = i;
+            }
+        }
+        for (int i = 0; i < root.getListTourType().get(placeTourType).getListTour().size(); i++) {
+            if (root.getListTourType().get(placeTourType).getListTour().get(i).equals(tourtypeID)) {
+                placetour = i;
+            }
+        }
+        for (int i = 0; i < root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().size(); i++) {
+            lastindex = i;
+        }
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
                 for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
                     if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
-                        tour = i;
-                        tour = j;
                         check = true;
                     }
-                    lastindex = j;
                 }
             }
         }
         if (check) {
             int id;
             if (lastindex != 0) {
-                id = Integer.parseInt(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().get(lastindex).getId()) + 1;
+                id = Integer.parseInt(root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().get(lastindex).getId()) + 1;
             } else {
                 id = lastindex;
             }
             tourDetail.setId(String.valueOf(id));
-            root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().add(tourDetail);
+            root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().add(tourDetail);
             db.marshaller(root);
         }
         return false;

@@ -28,14 +28,14 @@ public class main {
 //        tourType.setDescription("Đii đi vui lắm");
 //        System.out.println(tt2model.createTourType(tourType));
         
-        Tour tour = new Tour();
-        tour.setName("Đà Lạt - Phan Thiếtt 1");
-        tour.setContent("Đi để đii luôn đi");
-        tour.setDays("5 days");
-        tour.setStartDate("5/11/2022");
-        tour.setEndDate("10/11/2022");
-        tour.setImg("url01");
-        System.out.println(t1moModel.createTour(tour, "3"));
+//        Tour tour = new Tour();
+//        tour.setName("Đà Lạt - Phan Thiếtt 1");
+//        tour.setContent("Đi để đii luôn đi");
+//        tour.setDays("5 days");
+//        tour.setStartDate("5/11/2022");
+//        tour.setEndDate("10/11/2022");
+//        tour.setImg("url01");
+//        System.out.println(t1moModel.createTour(tour, "3"));
 //        
 //        TourDetail detail =new TourDetail();
 //        detail.setCityid("1");
