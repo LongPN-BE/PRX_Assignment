@@ -56,7 +56,7 @@ public class DeleteServlet extends HttpServlet {
             } else if (!tourTypeId.isEmpty()) {
                 TourTypeModel tourTypeModel = new TourTypeModel();
                  check = tourTypeModel.deleteTourType(tourTypeId);
-            } else if (!tourDesId.isBlank()) {
+            } else if (!tourDesId.isEmpty()) {
                 TouristDestinationModel destinationModel = new TouristDestinationModel();
                  check = destinationModel.deleteTourType(tourDesId); 
             }

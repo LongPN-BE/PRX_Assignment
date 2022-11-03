@@ -62,7 +62,7 @@ public class UpdateServlet extends HttpServlet {
                 TourTypeModel tourTypeModel = new TourTypeModel();
                 TourType tourType = tourTypeModel.searchTourTypeByID(tourTypeId);
                 request.setAttribute("TOURTYPE", tourType);
-            } else if (!tourDesId.isBlank()) {
+            } else if (!tourDesId.isEmpty()) {
                 TouristDestinationModel destinationModel = new TouristDestinationModel();
                 TouristDestination touristDestination = destinationModel.searchTouristByID(tourDesId);
                 request.setAttribute("TOURDES", touristDestination);
