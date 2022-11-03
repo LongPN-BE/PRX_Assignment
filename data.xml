@@ -82,9 +82,16 @@
             <description>Demo Create</description>
             <touristdestinations>
                 <touristdestination>
-                    <name>Demo create</name>
+                    <id>0</id>
+                    <name>Demo create 1</name>
                     <description>Demo create</description>
-                    <img>Demo create</img>
+                    <img>4</img>
+                </touristdestination>
+                <touristdestination>
+                    <id>0</id>
+                    <name>Demo create 2</name>
+                    <description>Demo create</description>
+                    <img>4</img>
                 </touristdestination>
             </touristdestinations>
         </city>

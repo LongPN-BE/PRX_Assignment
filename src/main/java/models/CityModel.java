@@ -87,6 +87,8 @@ public class CityModel {
             int id = Integer.parseInt(root.getListCity().get(lastindex).getId()) + 1;
             city.setId(String.valueOf(id));
             root.getListCity().add(city);
+            List<TouristDestination> listtourist = new ArrayList<>();
+            root.getListCity().get(lastindex + 1).setListTourist(listtourist);
             db.marshaller(root);
             return true;
         }
