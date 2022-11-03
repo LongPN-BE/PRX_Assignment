@@ -82,28 +82,39 @@ public class TourModel {
         return false;
     }
 
-    public boolean createTour(Tour tour) throws IOException, JAXBException {
+    public boolean createTour(Tour tour, String tourtypeID) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();
         Root root = db.unmarshaller();
-        boolean check = false;
+        boolean check = true;
         int tourtypeplace = 0;
+        int lastindex = 0;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            if (root.getListTourType().get(i).getId().equals(tourtypeID)) {
+                tourtypeplace = i;
+            }
+        }
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-                if (root.getListTourType().get(i).getListTour().get(j).getId().contains(tour.getId())) {
-                    tourtypeplace = i;
+                if (root.getListTourType().get(i).getListTour().get(j).getName().equals(tour.getName())) {
+                    check = false;
                 }
-                
             }
         }
         if (check) {
-            String id = String.valueOf(root.getListTourType().get(tourtypeplace).getListTour().get(root.getListTourType().get(tourtypeplace).getListTour().size()).getId() + 1);
-            tour.setId(id);
+            int id = 0;
+            if (lastindex != 0) {
+                id = Integer.parseInt(root.getListTourType().get(tourtypeplace).getListTour().get(lastindex).getId()) + 1;
+            }
+            tour.setId(String.valueOf(id));
+            List<TourDetail> listtourdetail = new ArrayList<>();
+            tour.setListTourDetail(listtourdetail);
             root.getListTourType().get(tourtypeplace).getListTour().add(tour);
             db.marshaller(root);
         }
         return false;
     }
+
     public boolean deleteTour(String id) throws IOException, JAXBException {
         // đọc file input.xml
         DBUtil db = new DBUtil();

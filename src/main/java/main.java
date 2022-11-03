@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import models.*;
+import models.extra.RoleUserModel;
 import org.xml.sax.SAXException;
 
 /**
@@ -30,15 +31,17 @@ public class main {
 //        cmodel.readCity();
 //        System.out.println(cmodel.getListCity());
 
-        TouristDestination tourist = new TouristDestination();
-        tourist.setName("Demo create 3");
-        tourist.setDescription("Demo create");
-        tourist.setImg("4");
+//        TouristDestination tourist = new TouristDestination();
+//        tourist.setName("Demo create 3");
+//        tourist.setDescription("Demo create");
+//        tourist.setImg("4");
+//
+//        System.out.println(tdmodel.createTourist(tourist, "4"));
+//
+//        System.out.println(tdmodel.getListTourist());
 
-        System.out.println(tdmodel.createTourist(tourist, "4"));
-
-        System.out.println(tdmodel.getListTourist());
-
+        RoleUserModel model = new RoleUserModel();
+        System.out.println(model.login("mrnam1", "123456"));
 
     }
 }

@@ -67,33 +67,39 @@ public class TourDetailModel {
         return false;
     }
 
-//    public boolean createTourDetail(TourDetail tourDetail) throws IOException, JAXBException {
-//        // đọc file input.xml
-//        DBUtil db = new DBUtil();
-//        Root root = db.unmarshaller();
-//        boolean check = false;
-//        int tourtype = 0;
-//        int tour = 0;
-//
-//        for (int i = 0; i < root.getListTourType().size(); i++) {
-//            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
-//                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
-//                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
-//                        tour = i;
-//                        tour = j;
-//                        check = true;
-//                    }
-//                }
-//            }
-//        }
-//        if (check) {
-//            String id = String.valueOf(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().get(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().size()).getId() + 1);
-//            tourDetail.setId(id);
-//            root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().add(tourDetail);
-//            db.marshaller(root);
-//        }
-//        return false;
-//    }
+    public boolean createTourDetail(TourDetail tourDetail, String tourID) throws IOException, JAXBException {
+        // đọc file input.xml
+        DBUtil db = new DBUtil();
+        Root root = db.unmarshaller();
+        boolean check = false;
+        int tourtype = 0;
+        int tour = 0;
+        int lastindex = 0;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+                    if (root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k).getId().equals(tourDetail.getId())) {
+                        tour = i;
+                        tour = j;
+                        check = true;
+                    }
+                    lastindex = j;
+                }
+            }
+        }
+        if (check) {
+            int id;
+            if (lastindex != 0) {
+                id = Integer.parseInt(root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().get(lastindex).getId()) + 1;
+            } else {
+                id = lastindex;
+            }
+            tourDetail.setId(String.valueOf(id));
+            root.getListTourType().get(tourtype).getListTour().get(tour).getListTourDetail().add(tourDetail);
+            db.marshaller(root);
+        }
+        return false;
+    }
 
     public boolean deleteTourDetail(String id) throws IOException, JAXBException {
         Root root = db.unmarshaller();
