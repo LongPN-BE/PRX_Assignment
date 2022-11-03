@@ -1,6 +1,6 @@
 <%-- 
-    Document   : new_destination
-    Created on : Nov 3, 2022, 5:03:34 AM
+    Document   : edit_tourtype
+    Created on : Nov 3, 2022, 11:56:17 PM
     Author     : ncda
 --%>
 
@@ -30,7 +30,6 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
 
-    <c:set value="${sessionScope.CITIES}" var="listCities" />
 
     <body>
         <header>
@@ -41,14 +40,14 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section_title text-center">
-                            <h3>Edit City</h3>
+                            <h3>Edit Tour Type</h3>
                         </div>
                     </div>
                 </div>
                 <form>
                     <div class="form-group">
-                        <label>City name</label>
-                        <input type="email" class="form-control" placeholder="">
+                        <label>Type Name</label>
+                        <input type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>

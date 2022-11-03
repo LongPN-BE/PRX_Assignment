@@ -41,13 +41,16 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section_title text-center">
-                            <h3>Edit City</h3>
+                            <h3>New Tour Type</h3>
                         </div>
                     </div>
                 </div>
-                <form>
+                
+                
+                
+                <form action="">
                     <div class="form-group">
-                        <label>City name</label>
+                        <label>Type Name</label>
                         <input type="email" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
@@ -56,6 +59,9 @@
                     </div>
                     <button type="submit" class="genric-btn success radius">Submit</button>
                 </form>
+                
+                
+                
             </div>
         </div>
 <footer>
