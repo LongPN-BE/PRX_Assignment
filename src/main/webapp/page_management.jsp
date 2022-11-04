@@ -45,6 +45,9 @@
         
         <%@include file="table_tours.jsp" %>
         
+        
+        <%@include file="table_tourtype.jsp" %>
+        
         </div>
         <footer>
             <%@include file="footer.jsp" %>
