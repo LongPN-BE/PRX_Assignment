@@ -48,7 +48,7 @@ public class UpdateTourServlet extends HttpServlet {
         boolean check;
         try {
             Tour tour = new Tour(tourId, name, startDate, endDate, days, content, img);
-            check = tourModel.updateTour(tour, "1");
+            check = tourModel.updateTour(tour, tourType);
         } catch (Exception e) {
             Logger.getLogger(UpdateTourServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {

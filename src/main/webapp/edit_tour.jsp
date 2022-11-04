@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
 
-
+    <c:set value="${sessionScope.TOURTYPES}" var="listCities" />
     <body>
         <header>
             <%@include file="header.jsp" %>
@@ -52,6 +52,14 @@
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
                         <textarea name="txtContent" class="form-control" rows="3" name="">${TOUR.content}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tour type</label>
+                        <select name="tourType" class="form-control">
+                            <c:forEach var="item" items="${listCities}" varStatus="counter">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Days</label>
