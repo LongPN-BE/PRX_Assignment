@@ -108,8 +108,10 @@ public class TourModel {
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
                 this.listtour.add(root.getListTourType().get(i).getListTour().get(j));
-                lastindex = j;
             }
+        }
+        for (int i = 0; i < this.listtour.size(); i++) {
+            lastindex = i;
         }
         if (check) {
             id = Integer.parseInt(this.listtour.get(lastindex).getId()) + 3;
