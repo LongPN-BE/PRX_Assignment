@@ -44,7 +44,7 @@ public class UpdateTourTypeServlet extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(UpdateTourTypeServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
     }
 

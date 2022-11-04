@@ -36,15 +36,16 @@ public class CreateTourDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String tourId = request.getParameter("tourID");
+        String tourType = request.getParameter("tourType");
         TourDetail tourDetail = new TourDetail();
         tourDetail.setCityid(request.getParameter("CityID"));
         TourDetailModel model = new TourDetailModel();
         try {
-            model.createTourDetail(tourDetail, tourId);
+            model.createTourDetail(tourDetail, tourId, tourType);
         } catch (Exception e) {
             Logger.getLogger(CreateTourDetailServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
     }
 

@@ -36,34 +36,33 @@ public class DeleteServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String tourId = request.getParameter("txtTourID");
-        String cityId = request.getParameter("txtCityID");
+        String tourId = request.getParameter("tourID");
+        String cityId = request.getParameter("cityID");
         String tourDetailId = request.getParameter("txtTourDetailID");
         String tourTypeId = request.getParameter("txtTourTypeID");
-        String tourDesId = request.getParameter("txtTourDestinationID");
+        String tourDesId = request.getParameter("tourDestinationID");
         boolean check = false;
-        String url = "";
         try {
-            if (!tourId.isEmpty()) {
+            if (tourId != null) {
                 TourModel tourModel = new TourModel();
                 check = tourModel.deleteTour(tourId);
-            } else if (!cityId.isEmpty()) {
+            } else if (cityId != null) {
                 CityModel cityModel = new CityModel();
-                 check = cityModel.deleteCity(cityId);
-            } else if (!tourDetailId.isEmpty()) {
+                check = cityModel.deleteCity(cityId);
+            } else if (tourDetailId != null) {
                 TourDetailModel tourDetailModel = new TourDetailModel();
-                 check = tourDetailModel.deleteTourDetail(tourDetailId);                
-            } else if (!tourTypeId.isEmpty()) {
+                check = tourDetailModel.deleteTourDetail(tourDetailId);
+            } else if (tourTypeId != null) {
                 TourTypeModel tourTypeModel = new TourTypeModel();
-                 check = tourTypeModel.deleteTourType(tourTypeId);
-            } else if (!tourDesId.isEmpty()) {
+                check = tourTypeModel.deleteTourType(tourTypeId);
+            } else if (tourDesId != null) {
                 TouristDestinationModel destinationModel = new TouristDestinationModel();
-                 check = destinationModel.deleteTourType(tourDesId); 
+                check = destinationModel.deleteTourType(tourDesId);
             }
         } catch (Exception e) {
             Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("page_management.jsp").forward(request, response);
         }
     }
 

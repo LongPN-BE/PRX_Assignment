@@ -75,10 +75,10 @@
                                     <td>${item.endDate}</td>
                                     <td>${item.content}</td>
                                     <c:if test="${user.rolename.equals('supermod') || user.rolename.equals('admin') || user.rolename.equals('supermod')}" >
-                                        <td><a href="#" class="genric-btn warning radius">Edit</a></td>
+                                        <td><a href="UpdateServlet?tourID=${item.id}" class="genric-btn warning radius">Edit</a></td>
                                     </c:if>
                                     <c:if test="${user.rolename.equals('supermod') || user.rolename.equals('admin') }">
-                                        <td><a href="#" class="genric-btn danger radius">Delete</a></td>
+                                        <td><a href="DeleteServlet?tourID=${item.id}" class="genric-btn danger radius">Delete</a></td>
                                     </c:if>
                                 </tr>
                                 </tr>
@@ -94,7 +94,7 @@
                 </c:if>
                 <div class="row">
                     <div class="col-11">
-                        <a href="#" class="genric-btn info radius">Add</a>
+                        <a href="new_tour.jsp" class="genric-btn info radius">Add</a>
                     </div>
                     <div class="col-1">
                         <div class='pagination-container'>

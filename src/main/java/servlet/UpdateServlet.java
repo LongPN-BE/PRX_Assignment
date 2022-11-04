@@ -40,38 +40,42 @@ public class UpdateServlet extends HttpServlet {
         String tourDetailId = request.getParameter("tourDetailID");
         String tourTypeId = request.getParameter("tourTypeID");
         String tourDesId = request.getParameter("tourDestinationID");
-
+        String url = "page_management.jsp";
 //        List<City> listCity = cityModel.getListCity();
         try {
-            if (!tourId.isEmpty()) {
+            if (tourId != null) {
 //                List<TourType> listTourType = tourTypeModel.getListTourType();
                 TourModel tourModel = new TourModel();
                 Tour tour = tourModel.searchTourByID(tourId);
                 request.setAttribute("TOUR", tour);
+                url = "edit_tour.jsp";
 //                request.setAttribute("LISTTYPE", listTourType);
-            } else if (!cityId.isEmpty()) {
+            } else if (cityId != null) {
                 CityModel cityModel = new CityModel();
-                City city = cityModel.searchCityByName(cityId);
+                City city = cityModel.searchCityByID(cityId);
                 request.setAttribute("CITY", city);
-            } else if (!tourDetailId.isEmpty()) {
+                url = "edit_city.jsp";
+            } else if (tourDetailId != null) {
                 TourDetailModel tourDetailModel = new TourDetailModel();
                 TourDetail tourDetail = tourDetailModel.searchTourDetailById(tourDetailId);
                 request.setAttribute("TOURDETAIL", tourDetail);
 //                request.setAttribute("LISTCITY", listCity);
-            } else if (!tourTypeId.isEmpty()) {
+            } else if (tourTypeId != null) {
                 TourTypeModel tourTypeModel = new TourTypeModel();
                 TourType tourType = tourTypeModel.searchTourTypeByID(tourTypeId);
                 request.setAttribute("TOURTYPE", tourType);
-            } else if (!tourDesId.isEmpty()) {
+                url = "edit_tourtype.jsp";
+            } else if (tourDesId != null) {
                 TouristDestinationModel destinationModel = new TouristDestinationModel();
                 TouristDestination touristDestination = destinationModel.searchTouristByID(tourDesId);
                 request.setAttribute("TOURDES", touristDestination);
+                url = "edit_destination.jsp";
 //                request.setAttribute("LISTCITY", listCity);
             }
         } catch (Exception e) {
             Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

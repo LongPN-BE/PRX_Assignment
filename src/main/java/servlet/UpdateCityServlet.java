@@ -45,7 +45,7 @@ public class UpdateCityServlet extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(UpdateCityServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
         
 

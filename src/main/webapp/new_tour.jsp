@@ -43,30 +43,30 @@
 
 
 
-                        <form action="">
+                        <form action="CreateTourServlet">
                             <div class="form-group">
                                 <label>Tour name</label>
-                                <input type="text" name="" class="form-control" placeholder="">
+                                <input type="text" name="txtName" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Content</label>
-                                <textarea class="form-control" rows="3" name=""></textarea>
+                                <textarea class="form-control" rows="3" name="txtContent"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Days</label>
-                                <input type="text" name="" class="form-control" placeholder="">
+                                <input type="text" name="txtDay" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label>Start Date</label>
-                                <input type="date" name="" class="form-control" id="">
+                                <input type="date" name="txtStartDate" class="form-control" id="">
                             </div>
                             <div class="form-group">
                                 <label>End Date</label>
-                                <input type="date" name="" class="form-control" id="">
+                                <input type="date" name="txtEndDate" class="form-control" id="">
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="text" name="" class="form-control" id="">
+                                <input type="text" name="txtImg" class="form-control" id="">
                             </div>
                             <button type="submit" class="genric-btn success radius">Submit</button>
                         </form>

@@ -45,11 +45,11 @@ public class CreateTourServlet extends HttpServlet {
         tour.setImg(request.getParameter("txtImg"));
         TourModel model = new TourModel();
         try {
-            model.createTour(tour, tourTypeID);
+            model.createTour(tour, "1");
         } catch (Exception e) {
             Logger.getLogger(CreateTourDestinationServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
     }
 

@@ -57,7 +57,11 @@ public class SearchServlet extends HttpServlet {
             touristModel.readTourist();
             List<TouristDestination> tourist = touristModel.getListTourist();
             session.setAttribute("TOURIST", tourist);
-            
+                      
+            TourDetailModel tourDetailModel = new TourDetailModel();
+            tourDetailModel.readTourDetail();
+            List<TourDetail> listTourDetails = tourDetailModel.getListTourDetail();
+            session.setAttribute("TOURDETAIL", listTourDetails);
         } catch (JAXBException ex) {
             Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

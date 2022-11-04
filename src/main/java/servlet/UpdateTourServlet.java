@@ -36,6 +36,7 @@ public class UpdateTourServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String tourType = request.getParameter("tourType");
         String tourId = request.getParameter("TourID");
         String name = request.getParameter("txtName");
         String startDate = request.getParameter("txtStartDate");;
@@ -46,12 +47,12 @@ public class UpdateTourServlet extends HttpServlet {
         TourModel tourModel = new TourModel();
         boolean check;
         try {
-            Tour tour = new Tour(img, name, startDate, endDate, days, content, img);
-            check = tourModel.updateTour(tour);
+            Tour tour = new Tour(tourId, name, startDate, endDate, days, content, img);
+            check = tourModel.updateTour(tour, "1");
         } catch (Exception e) {
             Logger.getLogger(UpdateTourServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
     }
 

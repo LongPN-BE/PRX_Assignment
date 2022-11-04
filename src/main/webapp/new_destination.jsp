@@ -47,23 +47,26 @@
                 </div>
                 
                 
-                <form action="">
+                <form action="CreateTourDestinationServlet" method="GET">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Destination name</label>
-                        <input type="email" class="form-control" placeholder="">
+                        <input name="txtName" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <label>City</label>
-                        <select class="form-control">
+                        <select name="CityID" class="form-control">
                             <c:forEach var="item" items="${listCities}" varStatus="counter">
-                                <option>${item.name}</option>
+                                <option value="${item.id}" >${item.name}</option>
                             </c:forEach>
-
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea name="txtDes" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                     <div class="form-group">
+                        <label for="exampleFormControlInput1">Destination image</label>
+                        <input name="txtImg" type="text" class="form-control" placeholder="">
                     </div>
                     <button type="submit" class="genric-btn success radius">Submit</button>
                 </form>

@@ -6,8 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="css/slick.css">
         <link rel="stylesheet" href="css/slicknav.css">
         <link rel="stylesheet"
-            href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+              href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -44,23 +44,24 @@
                         </div>
                     </div>
                 </div>
-                <form>
+                <form action="UpdateTourTypeServlet" method="GET">
+                    <input name="typeID" type="text" class="form-control" placeholder="" value="${TOURTYPE.id}" hidden>
                     <div class="form-group">
                         <label>Type Name</label>
-                        <input type="text" class="form-control" placeholder="">
+                        <input name="txtName" type="text" class="form-control" placeholder="" value="${TOURTYPE.name}">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea name="txtDes" class="form-control" rows="3">${TOURTYPE.escription}</textarea>
                     </div>
                     <button type="submit" class="genric-btn success radius">Submit</button>
                 </form>
             </div>
         </div>
-<footer>
+        <footer>
             <%@include file="footer.jsp" %>
         </footer>
     </body>
 
 
-    </html>
+</html>

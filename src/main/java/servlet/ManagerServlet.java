@@ -4,24 +4,27 @@
  */
 package servlet;
 
-import entity.TourDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.TourDetailModel;
+import models.*;
+import entity.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBException;
 
 /**
  *
  * @author phien
  */
-@WebServlet(name = "UpdateTourDetailServlet", urlPatterns = {"/UpdateTourDetailServlet"})
-public class UpdateTourDetailServlet extends HttpServlet {
+@WebServlet(name = "ManagerServlet", urlPatterns = {"/ManagerServlet"})
+public class ManagerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +38,39 @@ public class UpdateTourDetailServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String tourType = request.getParameter("tourType");
-        String tourId = request.getParameter("tourID");
-        String id = request.getParameter("DetailID");
-        String city = request.getParameter("txtCity");
-        TourDetailModel model = new TourDetailModel();
+        PrintWriter out = response.getWriter();
         try {
-            TourDetail detail = new TourDetail(id, city);
-            boolean check = model.updateTourDetail(detail, tourId, tourType);
-        } catch (Exception e) {
-            Logger.getLogger(UpdateTourDetailServlet.class.getName()).log(Level.SEVERE, null, e);
+            /* TODO output your page here. You may use following sample code. */
+            CityModel cityModel = new CityModel();
+            cityModel.readCity();
+            List<City> cities = cityModel.getListCity();
+            HttpSession session = request.getSession();
+            session.setAttribute("CITIES", cities);
+
+            TourModel tourModel = new TourModel();
+            tourModel.readTour();
+            List<Tour> tours = tourModel.getListTour();
+            session.setAttribute("TOURS", tours);
+
+            TourTypeModel tourtypeModel = new TourTypeModel();
+            tourtypeModel.readTourType();
+            List<TourType> tourTypes = tourtypeModel.getListTourType();
+            session.setAttribute("TOURTYPES", tourTypes);
+
+            TouristDestinationModel touristModel = new TouristDestinationModel();
+            touristModel.readTourist();
+            List<TouristDestination> tourist = touristModel.getListTourist();
+            session.setAttribute("TOURIST", tourist);
+
+            TourDetailModel tourDetailModel = new TourDetailModel();
+            tourDetailModel.readTourDetail();
+            List<TourDetail> listTourDetails = tourDetailModel.getListTourDetail();
+            session.setAttribute("TOURDETAIL", listTourDetails);
+        } catch (JAXBException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            request.getRequestDispatcher("ManagerServlet").forward(request, response);
+            response.sendRedirect("page_management.jsp");
+            out.close();
         }
     }
 

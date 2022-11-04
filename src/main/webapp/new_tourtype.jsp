@@ -48,14 +48,14 @@
                 
                 
                 
-                <form action="">
+                <form action="CreateTourTypeServlet">
                     <div class="form-group">
                         <label>Type Name</label>
-                        <input type="email" class="form-control" placeholder="">
+                        <input type="text" class="form-control" placeholder="" name="txtType">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="txtDescription"></textarea>
                     </div>
                     <button type="submit" class="genric-btn success radius">Submit</button>
                 </form>

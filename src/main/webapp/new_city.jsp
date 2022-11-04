@@ -48,14 +48,14 @@
                 
                 
                 
-                <form action="">
+                <form action="CreateCityServlet" method="GET">
                     <div class="form-group">
                         <label>City name</label>
-                        <input type="email" class="form-control" placeholder="">
+                        <input name="txtName" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea name="txtDes" class="form-control" rows="3"></textarea>
                     </div>
                     <button type="submit" class="genric-btn success radius">Submit</button>
                 </form>
