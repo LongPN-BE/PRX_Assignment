@@ -82,7 +82,6 @@ public class TourDetailModel {
         boolean check = false;
         int placeTourType = 0;
         int placetour = 0;
-        int lastindex = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).equals(tourtypeID)) {
                 placeTourType = i;
@@ -93,9 +92,6 @@ public class TourDetailModel {
                 placetour = i;
             }
         }
-        for (int i = 0; i < root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().size(); i++) {
-            lastindex = i;
-        }
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
                 for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
@@ -105,14 +101,15 @@ public class TourDetailModel {
                 }
             }
         }
-        if (check) {
-            int id;
-            if (lastindex != 0) {
-                id = Integer.parseInt(root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().get(lastindex).getId()) + 1;
-            } else {
-                id = lastindex;
+        for (int i = 0; i < root.getListTourType().size(); i++) {
+            for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
+                for (int k = 0; k < root.getListTourType().get(i).getListTour().get(j).getListTourDetail().size(); k++) {
+                    this.listtourdetail.add(root.getListTourType().get(i).getListTour().get(j).getListTourDetail().get(k));
+                }
             }
-            tourDetail.setId(String.valueOf(id));
+        }
+        if (check) {
+            int id = Integer.parseInt(this.listtourdetail.get(this.listtourdetail.size()).getId()) + 1;
             root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().add(tourDetail);
             db.marshaller(root);
         }

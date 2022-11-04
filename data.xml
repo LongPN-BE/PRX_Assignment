@@ -193,7 +193,7 @@
             <description>Đii đi vui lắm</description>
             <tours>
                 <tour>
-                    <id>1</id>
+                    <id>3</id>
                     <name>Đà Lạt - Phan Thiếtt</name>
                     <startDate>5/11/2022</startDate>
                     <endDate>10/11/2022</endDate>
@@ -203,7 +203,7 @@
                     <tourdeatils/>
                 </tour>
                 <tour>
-                    <id>2</id>
+                    <id>4</id>
                     <name>Đà Lạt - Phan Thiếtt 1</name>
                     <startDate>5/11/2022</startDate>
                     <endDate>10/11/2022</endDate>

@@ -73,20 +73,18 @@ public class TouristDestinationModel {
             }
         }
         boolean check = true;
-        int lastindex = 0;
         for (int i = 0; i < root.getListCity().get(numCity).getListTourist().size(); i++) {
             if (root.getListCity().get(numCity).getListTourist().get(i).getName().equals(touristDestination.getName())) {
                 check = false;
             }
-            lastindex = i;
+        }
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                this.listtourist.add(root.getListCity().get(i).getListTourist().get(j));
+            }
         }
         if (check) {
-            int id = 0;
-            if (lastindex == 0) {
-                id = lastindex;
-            } else {
-                id = Integer.parseInt(root.getListCity().get(numCity).getListTourist().get(lastindex).getId()) + 1;
-            }
+            int id = Integer.parseInt(this.listtourist.get(this.listtourist.size()).getId()) + 1;
             touristDestination.setId(String.valueOf(id));
             root.getListCity().get(numCity).getListTourist().add(touristDestination);
             db.marshaller(root);
@@ -112,14 +110,16 @@ public class TouristDestinationModel {
         return false;
     }
 
-    public boolean deleteTourType(String id) throws IOException, JAXBException {
+    public boolean deleteTourRist(String id) throws IOException, JAXBException {
         // đọc file input.xml
         Root root = db.unmarshaller();
-        for (int i = 0; i < root.getListTourType().size(); i++) {
-            if (root.getListTourType().get(i).getId().contains(id)) {
-                root.getListTourType().remove(i);
-                db.marshaller(root);
-                return true;
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            for (int j = 0; j < root.getListCity().get(i).getListTourist().size(); j++) {
+                if (root.getListCity().get(i).getListTourist().get(j).getId().contains(id)) {
+                    root.getListCity().get(i).getListTourist().remove(j);
+                    db.marshaller(root);
+                    return true;
+                }
             }
         }
         return false;
