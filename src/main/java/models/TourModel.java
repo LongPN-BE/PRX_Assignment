@@ -93,6 +93,7 @@ public class TourModel {
         Root root = db.unmarshaller();
         boolean check = true;
         int tourtypeplace = 0;
+        int lastindex = 0;
         int id = 0;
         for (int i = 0; i < root.getListTourType().size(); i++) {
             if (root.getListTourType().get(i).getId().equals(tourtypeID)) {
@@ -107,10 +108,11 @@ public class TourModel {
         for (int i = 0; i < root.getListTourType().size(); i++) {
             for (int j = 0; j < root.getListTourType().get(i).getListTour().size(); j++) {
                 this.listtour.add(root.getListTourType().get(i).getListTour().get(j));
+                lastindex = j;
             }
         }
         if (check) {
-            id = Integer.parseInt(this.listtour.get(this.listtour.size()).getId()) + 1;
+            id = Integer.parseInt(this.listtour.get(lastindex).getId()) + 3;
             tour.setId(String.valueOf(id));
             List<TourDetail> listtourdetail = new ArrayList<>();
             tour.setListTourDetail(listtourdetail);

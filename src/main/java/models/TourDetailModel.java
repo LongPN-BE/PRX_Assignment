@@ -108,8 +108,12 @@ public class TourDetailModel {
                 }
             }
         }
+        int lastindex = 0;
+        for (int i = 0; i < this.listtourdetail.size(); i++) {
+            lastindex = i;
+        }
         if (check) {
-            int id = Integer.parseInt(this.listtourdetail.get(this.listtourdetail.size()).getId()) + 1;
+            int id = Integer.parseInt(this.listtourdetail.get(lastindex).getId()) + 1;
             root.getListTourType().get(placeTourType).getListTour().get(placetour).getListTourDetail().add(tourDetail);
             db.marshaller(root);
         }

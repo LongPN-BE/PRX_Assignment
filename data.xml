@@ -82,19 +82,19 @@
             <description>Demo Create</description>
             <touristdestinations>
                 <touristdestination>
-                    <id>0</id>
+                    <id>10</id>
                     <name>Demo create 1</name>
                     <description>Demo create</description>
                     <img>4</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>0</id>
+                    <id>11</id>
                     <name>Demo create 2</name>
                     <description>Demo create</description>
                     <img>4</img>
                 </touristdestination>
                 <touristdestination>
-                    <id>1</id>
+                    <id>12</id>
                     <name>Demo create 3</name>
                     <description>Demo create</description>
                     <img>4</img>

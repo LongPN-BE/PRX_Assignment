@@ -73,6 +73,7 @@ public class TouristDestinationModel {
             }
         }
         boolean check = true;
+        int lastindex = 0;
         for (int i = 0; i < root.getListCity().get(numCity).getListTourist().size(); i++) {
             if (root.getListCity().get(numCity).getListTourist().get(i).getName().equals(touristDestination.getName())) {
                 check = false;
@@ -83,8 +84,11 @@ public class TouristDestinationModel {
                 this.listtourist.add(root.getListCity().get(i).getListTourist().get(j));
             }
         }
+        for (int i = 0; i < this.listtourist.size(); i++) {
+          lastindex = i;
+        }
         if (check) {
-            int id = Integer.parseInt(this.listtourist.get(this.listtourist.size()).getId()) + 1;
+            int id = Integer.parseInt(this.listtourist.get(lastindex).getId()) + 1;
             touristDestination.setId(String.valueOf(id));
             root.getListCity().get(numCity).getListTourist().add(touristDestination);
             db.marshaller(root);
