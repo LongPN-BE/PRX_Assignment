@@ -43,6 +43,17 @@ public class CityModel {
         }
         return null;
     }
+    
+    public City searchCityByID(String id) throws IOException, JAXBException {
+        // đọc file input.xml
+        Root root = db.unmarshaller();
+        for (int i = 0; i < root.getListCity().size(); i++) {
+            if (root.getListCity().get(i).getId().contains(id)) {
+                return root.getListCity().get(i);
+            }
+        }
+        return null;
+    }
 
     public int searchLocationCityByID(String id) throws IOException, JAXBException {
         // đọc file input.xml

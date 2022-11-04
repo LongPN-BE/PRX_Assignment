@@ -62,7 +62,7 @@ public class DeleteServlet extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("page_management.jsp").forward(request, response);
+            request.getRequestDispatcher("ManagerServlet").forward(request, response);
         }
     }
 
