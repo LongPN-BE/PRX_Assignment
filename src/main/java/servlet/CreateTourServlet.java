@@ -35,7 +35,7 @@ public class CreateTourServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String tourTypeID = request.getParameter("tourTypeID");
+        String tourType = request.getParameter("tourType");
         Tour tour = new Tour();
         tour.setName(request.getParameter("txtName"));
         tour.setStartDate(request.getParameter("txtStartDate"));
@@ -45,7 +45,7 @@ public class CreateTourServlet extends HttpServlet {
         tour.setImg(request.getParameter("txtImg"));
         TourModel model = new TourModel();
         try {
-            model.createTour(tour, "1");
+            model.createTour(tour, tourType);
         } catch (Exception e) {
             Logger.getLogger(CreateTourDestinationServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
